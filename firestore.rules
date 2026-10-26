@@ -1,0 +1,38 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Helper to verify authenticated admin user
+    function isAuthenticatedAdmin() {
+      return request.auth != null;
+    }
+
+    // Product collection rules
+    match /products/{productId} {
+      allow read: if true;
+      allow create, update, delete: if isAuthenticatedAdmin();
+    }
+
+    // Customer orders collection rules
+    match /orders/{orderId} {
+      // Anyone can submit a new online order
+      allow create: if true;
+      // Only authenticated admin can view and update order statuses
+      allow read, update, delete: if isAuthenticatedAdmin();
+    }
+
+    // Product reviews collection rules
+    match /reviews/{reviewId} {
+      // Anyone can read and post reviews
+      allow read, create: if true;
+      // Only authenticated admin can delete or edit reviews
+      allow update, delete: if isAuthenticatedAdmin();
+    }
+
+    // Default deny for all other collections
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

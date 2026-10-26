@@ -1,0 +1,34 @@
+rules_version = '2';
+
+service firebase.storage {
+  match /b/{bucket}/o {
+
+    // Helper to verify authenticated admin user
+    function isAuthenticatedAdmin() {
+      return request.auth != null;
+    }
+
+    // Helper to validate uploaded image types and maximum 5MB size
+    function isValidImage() {
+      return request.resource.size <= 5 * 1024 * 1024
+        && request.resource.contentType.matches('image/(jpeg|jpg|png|webp)');
+    }
+
+    // Product gallery images path
+    match /products/{productId}/{imageFile} {
+      // Public visitors can view product photos
+      allow read: if true;
+
+      // Only authenticated admin can upload images within size and type limits
+      allow create, update: if isAuthenticatedAdmin() && isValidImage();
+
+      // Only authenticated admin can delete product images
+      allow delete: if isAuthenticatedAdmin();
+    }
+
+    // Default deny for all other storage paths
+    match /{allPaths=**} {
+      allow read, write: if false;
+    }
+  }
+}

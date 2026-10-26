@@ -1,0 +1,18 @@
+"use client";
+
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
+
+export default function ComparePage() {
+  const router = useRouter();
+
+  useEffect(() => {
+    router.replace("/products");
+  }, [router]);
+
+  return (
+    <div className="min-h-[50vh] flex items-center justify-center p-6 text-center text-xs text-slate-500">
+      <span>Redirecting to products...</span>
+    </div>
+  );
+}
