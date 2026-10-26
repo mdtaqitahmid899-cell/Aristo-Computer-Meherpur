@@ -68,19 +68,8 @@ cp .env.example .env.local
 
 Edit `.env.local` with your shop contact details and Firebase project credentials:
 
-```env
-# Firebase Configuration
-NEXT_PUBLIC_FIREBASE_API_KEY="AIzaSyYourFirebaseApiKeyHere"
-NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN="aristo-computer.firebaseapp.com"
-NEXT_PUBLIC_FIREBASE_PROJECT_ID="aristo-computer"
-NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET="aristo-computer.appspot.com"
-NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID="123456789012"
-NEXT_PUBLIC_FIREBASE_APP_ID="1:123456789012:web:abcdef123456"
 
-# Shop Numbers (Include Bangladesh country code: +880)
-NEXT_PUBLIC_SHOP_PHONE="+8801712345678"
-NEXT_PUBLIC_SHOP_WHATSAPP="+8801712345678"
-```
+
 
 > **Note on Demo Mode:** If Firebase credentials are not yet configured in `.env.local`, the application automatically runs in fallback mode with realistic computer hardware demo data and allows demo admin login with `admin@aristocomputer.com` / `admin123456`.
 
