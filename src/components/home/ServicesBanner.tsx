@@ -92,10 +92,10 @@ export default function ServicesBanner() {
             </div>
 
             {/* Direct Contact & Camera CTAs */}
-            <div className="flex flex-row sm:flex-col gap-3 shrink-0">
+            <div className="flex flex-col sm:flex-row lg:flex-col gap-2.5 sm:gap-3 shrink-0 w-full lg:w-auto">
               <Link
                 href="/camera-setup"
-                className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-xs shadow-lg shadow-indigo-900/30 transition-all cursor-pointer text-center"
+                className="inline-flex items-center justify-center gap-2 px-4 sm:px-5 py-2.5 sm:py-3 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-xs shadow-lg shadow-indigo-900/30 transition-all cursor-pointer text-center"
               >
                 <Camera className="w-4 h-4 shrink-0" />
                 <span>{t.nav.cameraSetup}</span>
@@ -110,7 +110,7 @@ export default function ServicesBanner() {
                 )}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs shadow-lg shadow-emerald-900/30 transition-all cursor-pointer text-center"
+                className="inline-flex items-center justify-center gap-2 px-4 sm:px-5 py-2.5 sm:py-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs shadow-lg shadow-emerald-900/30 transition-all cursor-pointer text-center"
               >
                 <MessageCircle className="w-4 h-4 shrink-0" />
                 <span>{t.common.inquireWhatsApp}</span>
@@ -118,7 +118,7 @@ export default function ServicesBanner() {
 
               <a
                 href={`tel:${SHOP_CONFIG.phone}`}
-                className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 hover:text-white font-semibold text-xs border border-slate-700 transition-all cursor-pointer text-center"
+                className="inline-flex items-center justify-center gap-2 px-4 sm:px-5 py-2 sm:py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 hover:text-white font-semibold text-xs border border-slate-700 transition-all cursor-pointer text-center"
               >
                 <Phone className="w-4 h-4 text-blue-400 shrink-0" />
                 <span>{t.common.callNow}</span>

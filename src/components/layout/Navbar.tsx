@@ -110,20 +110,21 @@ export default function Navbar() {
   return (
     <header className="sticky top-0 z-50 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 shadow-xs transition-colors duration-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-20 gap-3">
+        <div className="flex items-center justify-between h-18 sm:h-20 gap-2 sm:gap-4">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-3 shrink-0 group">
-            <Logo variant="badge" size="md" />
-            <div>
+          <Link href="/" className="flex items-center gap-2 sm:gap-3 shrink-0 group min-w-0">
+            <Logo variant="badge" size="sm" className="sm:hidden shrink-0" />
+            <Logo variant="badge" size="md" className="hidden sm:flex shrink-0" />
+            <div className="min-w-0">
               <div className="flex items-center gap-1">
-                <span className="text-lg sm:text-xl font-black tracking-tight text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                <span className="text-base sm:text-xl font-black tracking-tight text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
                   ARISTO
                 </span>
-                <span className="text-lg sm:text-xl font-bold tracking-tight text-blue-600 dark:text-blue-400">
+                <span className="text-base sm:text-xl font-bold tracking-tight text-blue-600 dark:text-blue-400">
                   COMPUTER
                 </span>
               </div>
-              <p className="text-[10px] sm:text-[11px] font-medium tracking-wide text-slate-500 dark:text-slate-400">
+              <p className="text-[9px] sm:text-[11px] font-medium tracking-wide text-slate-500 dark:text-slate-400 truncate max-w-[130px] sm:max-w-none">
                 {isBangla ? "হোটেল বাজার, মেহেরপুর" : "Hotel Bazar, Meherpur"}
               </p>
             </div>
@@ -132,7 +133,7 @@ export default function Navbar() {
           {/* Desktop Search Bar with Live Autocomplete */}
           <div
             ref={searchContainerRef}
-            className="hidden md:flex flex-1 max-w-md mx-3 relative"
+            className="hidden md:flex flex-1 max-w-xs lg:max-w-md mx-2 lg:mx-4 relative"
           >
             <form onSubmit={handleSearchSubmit} className="relative w-full">
               <input
@@ -310,36 +311,40 @@ export default function Navbar() {
           </nav>
 
           {/* Right Action Icons: Language, Theme Toggle, Compare, Wishlist, Cart */}
-          <div className="flex items-center gap-1.5 sm:gap-2">
-            {/* Language Switcher */}
-            <LanguageToggle />
+          <div className="flex items-center gap-1 sm:gap-2 shrink-0">
+            {/* Language Switcher - on tablets/desktop */}
+            <div className="hidden sm:block">
+              <LanguageToggle />
+            </div>
 
-            {/* Dark/Light Theme Toggle */}
-            <ThemeToggle />
+            {/* Dark/Light Theme Toggle - on tablets/desktop */}
+            <div className="hidden sm:block">
+              <ThemeToggle />
+            </div>
 
-            {/* Wishlist Link */}
+            {/* Wishlist Link - on tablets/desktop */}
             <Link
               href="/wishlist"
-              className="relative p-2 rounded-xl text-slate-600 dark:text-slate-300 hover:text-rose-600 dark:hover:text-rose-400 hover:bg-rose-50 dark:hover:bg-slate-800 transition-colors"
+              className="hidden sm:flex relative p-2 rounded-xl text-slate-600 dark:text-slate-300 hover:text-rose-600 dark:hover:text-rose-400 hover:bg-rose-50 dark:hover:bg-slate-800 transition-colors"
               title="Saved wishlist items"
             >
               <Heart className="w-5 h-5" />
               {wishlistCount > 0 && (
-                <span className="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-rose-600 text-white text-[10px] font-bold flex items-center justify-center">
+                <span className="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-rose-600 text-white text-[10px] font-bold flex items-center justify-center font-mono">
                   {wishlistCount}
                 </span>
               )}
             </Link>
 
-            {/* Cart Link with Badge */}
+            {/* Cart Link with Badge - always accessible */}
             <Link
               href="/cart"
-              className="relative flex items-center gap-2 px-3 py-2 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-blue-50 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-100 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+              className="relative flex items-center gap-1.5 px-2.5 sm:px-3 py-2 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-blue-50 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-100 hover:text-blue-600 dark:hover:text-blue-400 transition-colors shrink-0"
               title="View shopping cart"
             >
-              <ShoppingCart className="w-5 h-5 text-slate-700 dark:text-slate-300" />
+              <ShoppingCart className="w-4.5 h-4.5 sm:w-5 sm:h-5 text-slate-700 dark:text-slate-300 shrink-0" />
               {cartCount > 0 && (
-                <span className="w-5 h-5 rounded-full bg-blue-600 text-white text-[11px] font-bold flex items-center justify-center font-mono">
+                <span className="w-4.5 h-4.5 sm:w-5 sm:h-5 rounded-full bg-blue-600 text-white text-[10px] sm:text-[11px] font-bold flex items-center justify-center font-mono shrink-0">
                   {cartCount}
                 </span>
               )}
@@ -348,10 +353,10 @@ export default function Navbar() {
             {/* Mobile menu toggle */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2 rounded-xl text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 focus:outline-hidden lg:hidden cursor-pointer"
+              className="p-2 rounded-xl text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 focus:outline-hidden lg:hidden cursor-pointer shrink-0"
               aria-label="Toggle navigation menu"
             >
-              {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              {mobileMenuOpen ? <X className="w-5 h-5 sm:w-6 sm:h-6" /> : <Menu className="w-5 h-5 sm:w-6 sm:h-6" />}
             </button>
           </div>
         </div>
@@ -376,7 +381,7 @@ export default function Navbar() {
             <Search className="w-4 h-4 text-slate-400 dark:text-slate-500 absolute left-3 top-1/2 -translate-y-1/2" />
             <button
               type="submit"
-              className="absolute right-1 top-1/2 -translate-y-1/2 px-3 py-1 bg-blue-600 text-white text-xs font-semibold rounded-lg"
+              className="absolute right-1 top-1/2 -translate-y-1/2 px-3 py-1 bg-blue-600 hover:bg-blue-700 text-white text-xs font-semibold rounded-lg cursor-pointer transition-colors"
             >
               Search
             </button>
@@ -384,11 +389,20 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* Mobile Drawer Menu */}
+      {/* Mobile Slide-Over Drawer */}
       {mobileMenuOpen && (
-        <div className="lg:hidden fixed inset-0 top-32 z-50 bg-slate-900/60 backdrop-blur-xs flex flex-col justify-end">
-          <div className="bg-white dark:bg-slate-900 rounded-t-3xl max-h-[80vh] overflow-y-auto p-6 space-y-5 shadow-2xl border-t border-slate-100 dark:border-slate-800">
-            <div className="flex items-center justify-between pb-3 border-b border-slate-100 dark:border-slate-800">
+        <div className="lg:hidden fixed inset-0 z-50 flex">
+          {/* Backdrop */}
+          <div
+            className="fixed inset-0 bg-slate-950/70 backdrop-blur-xs transition-opacity"
+            onClick={() => setMobileMenuOpen(false)}
+            aria-hidden="true"
+          />
+
+          {/* Slide-over Drawer Panel */}
+          <div className="relative ml-auto w-full max-w-xs sm:max-w-sm bg-white dark:bg-slate-900 h-full shadow-2xl flex flex-col z-10 border-l border-slate-200 dark:border-slate-800 transition-colors">
+            {/* Drawer Header */}
+            <div className="p-4 border-b border-slate-100 dark:border-slate-800 flex items-center justify-between">
               <div className="flex items-center gap-2.5">
                 <Logo variant="badge" size="sm" />
                 <div>
@@ -402,133 +416,144 @@ export default function Navbar() {
               </div>
               <button
                 onClick={() => setMobileMenuOpen(false)}
-                className="p-1 rounded-full text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 cursor-pointer"
+                className="p-1.5 rounded-xl text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 cursor-pointer"
+                aria-label="Close menu"
               >
                 <X className="w-5 h-5" />
               </button>
             </div>
 
-            {/* Mobile Controls: Language & Theme */}
-            <div className="p-3 rounded-2xl bg-slate-50 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700/80 space-y-2.5">
-              <div className="flex items-center justify-between">
-                <span className="text-xs font-bold text-slate-700 dark:text-slate-300">
-                  {t.nav.language}
-                </span>
-                <LanguageToggle />
-              </div>
-              <div className="flex items-center justify-between pt-2 border-t border-slate-200/60 dark:border-slate-700/60">
-                <span className="text-xs font-bold text-slate-700 dark:text-slate-300">
-                  {t.nav.theme}
-                </span>
-                <ThemeToggle showDropdown={true} />
-              </div>
-            </div>
-
-            <div className="grid gap-1.5 text-sm font-medium text-slate-800 dark:text-slate-200">
-              <Link
-                href="/"
-                onClick={() => setMobileMenuOpen(false)}
-                className="px-3 py-2 rounded-xl hover:bg-blue-50 dark:hover:bg-slate-800 hover:text-blue-600 dark:hover:text-blue-400"
-              >
-                {t.nav.home}
-              </Link>
-              <Link
-                href="/products"
-                onClick={() => setMobileMenuOpen(false)}
-                className="px-3 py-2 rounded-xl hover:bg-blue-50 dark:hover:bg-slate-800 hover:text-blue-600 dark:hover:text-blue-400"
-              >
-                {t.nav.products}
-              </Link>
-              <Link
-                href="/pc-builder"
-                onClick={() => setMobileMenuOpen(false)}
-                className="px-3 py-2.5 rounded-xl bg-blue-50 dark:bg-blue-950/60 text-blue-700 dark:text-blue-300 font-bold flex items-center justify-between border border-blue-200/50 dark:border-blue-900/50"
-              >
-                <div className="flex items-center gap-2">
-                  <Cpu className="w-4 h-4 text-blue-600 dark:text-blue-400" />
-                  <span>{t.nav.pcBuilder}</span>
-                </div>
-                <span className="text-[10px] bg-blue-600 text-white px-2 py-0.5 rounded-full">POPULAR</span>
-              </Link>
-              <Link
-                href="/camera-setup"
-                onClick={() => setMobileMenuOpen(false)}
-                className="px-3 py-2.5 rounded-xl bg-indigo-50 dark:bg-indigo-950/60 text-indigo-700 dark:text-indigo-300 font-bold flex items-center justify-between border border-indigo-200/50 dark:border-indigo-900/50"
-              >
-                <div className="flex items-center gap-2">
-                  <Camera className="w-4 h-4 text-indigo-600 dark:text-indigo-400" />
-                  <span>{t.nav.cameraSetup}</span>
-                </div>
-                <span className="text-[10px] bg-indigo-600 text-white px-2 py-0.5 rounded-full">SECURITY</span>
-              </Link>
-              <Link
-                href="/cart"
-                onClick={() => setMobileMenuOpen(false)}
-                className="px-3 py-2 rounded-xl hover:bg-blue-50 dark:hover:bg-slate-800 hover:text-blue-600 dark:hover:text-blue-400 flex items-center justify-between"
-              >
-                <span>{t.nav.cart}</span>
-                {cartCount > 0 && (
-                  <span className="text-xs bg-blue-600 text-white px-2 py-0.5 rounded-full font-bold">
-                    {cartCount}
+            {/* Drawer Body (Scrollable) */}
+            <div className="flex-1 overflow-y-auto p-4 space-y-4">
+              {/* Mobile Controls: Language & Theme */}
+              <div className="p-3 rounded-2xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200/80 dark:border-slate-700/80 space-y-2.5">
+                <div className="flex items-center justify-between">
+                  <span className="text-xs font-bold text-slate-700 dark:text-slate-300">
+                    {t.nav.language}
                   </span>
-                )}
-              </Link>
-              <Link
-                href="/wishlist"
-                onClick={() => setMobileMenuOpen(false)}
-                className="px-3 py-2 rounded-xl hover:bg-rose-50 dark:hover:bg-slate-800 hover:text-rose-600 dark:hover:text-rose-400 flex items-center justify-between"
-              >
-                <div className="flex items-center gap-2">
-                  <Heart className="w-4 h-4 text-rose-500" />
-                  <span>{t.nav.wishlist}</span>
+                  <LanguageToggle />
                 </div>
-                {wishlistCount > 0 && (
-                  <span className="text-xs bg-rose-600 text-white px-2 py-0.5 rounded-full font-bold">
-                    {wishlistCount}
+                <div className="flex items-center justify-between pt-2 border-t border-slate-200/60 dark:border-slate-700/60">
+                  <span className="text-xs font-bold text-slate-700 dark:text-slate-300">
+                    {t.nav.theme}
                   </span>
-                )}
-              </Link>
-              <Link
-                href="/products?featured=true"
-                onClick={() => setMobileMenuOpen(false)}
-                className="px-3 py-2 rounded-xl hover:bg-blue-50 dark:hover:bg-slate-800 hover:text-blue-600 dark:hover:text-blue-400 flex items-center justify-between"
-              >
-                <span>{t.nav.offers}</span>
-                <span className="text-xs bg-amber-100 dark:bg-amber-950 text-amber-800 dark:text-amber-300 px-2 py-0.5 rounded-full font-bold">
-                  HOT
-                </span>
-              </Link>
-              <Link
-                href="/contact"
-                onClick={() => setMobileMenuOpen(false)}
-                className="px-3 py-2 rounded-xl hover:bg-blue-50 dark:hover:bg-slate-800 hover:text-blue-600 dark:hover:text-blue-400"
-              >
-                {t.nav.contact}
-              </Link>
-            </div>
+                  <ThemeToggle showDropdown={true} />
+                </div>
+              </div>
 
-            <div className="pt-3 border-t border-slate-100 dark:border-slate-800">
-              <p className="text-xs font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500 mb-2">
-                Hardware Categories
-              </p>
-              <div className="grid grid-cols-2 gap-1.5 text-xs">
-                {PRODUCT_CATEGORIES.map((cat) => (
-                  <Link
-                    key={cat}
-                    href={`/products?category=${encodeURIComponent(cat)}`}
-                    onClick={() => setMobileMenuOpen(false)}
-                    className="p-2 rounded-lg bg-slate-50 dark:bg-slate-800 hover:bg-blue-50 dark:hover:bg-slate-750 text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
-                  >
-                    {cat}
-                  </Link>
-                ))}
+              {/* Main Links */}
+              <div className="grid gap-1 text-sm font-medium text-slate-800 dark:text-slate-200">
+                <Link
+                  href="/"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="px-3 py-2 rounded-xl hover:bg-blue-50 dark:hover:bg-slate-800 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                >
+                  {t.nav.home}
+                </Link>
+                <Link
+                  href="/products"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="px-3 py-2 rounded-xl hover:bg-blue-50 dark:hover:bg-slate-800 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                >
+                  {t.nav.products}
+                </Link>
+                <Link
+                  href="/pc-builder"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="px-3 py-2.5 rounded-xl bg-blue-50 dark:bg-blue-950/60 text-blue-700 dark:text-blue-300 font-bold flex items-center justify-between border border-blue-200/50 dark:border-blue-900/50 transition-colors"
+                >
+                  <div className="flex items-center gap-2">
+                    <Cpu className="w-4 h-4 text-blue-600 dark:text-blue-400" />
+                    <span>{t.nav.pcBuilder}</span>
+                  </div>
+                  <span className="text-[10px] bg-blue-600 text-white px-2 py-0.5 rounded-full font-mono">
+                    CUSTOM
+                  </span>
+                </Link>
+                <Link
+                  href="/camera-setup"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="px-3 py-2.5 rounded-xl bg-indigo-50 dark:bg-indigo-950/60 text-indigo-700 dark:text-indigo-300 font-bold flex items-center justify-between border border-indigo-200/50 dark:border-indigo-900/50 transition-colors"
+                >
+                  <div className="flex items-center gap-2">
+                    <Camera className="w-4 h-4 text-indigo-600 dark:text-indigo-400" />
+                    <span>{t.nav.cameraSetup}</span>
+                  </div>
+                  <span className="text-[10px] bg-indigo-600 text-white px-2 py-0.5 rounded-full font-mono">
+                    CCTV
+                  </span>
+                </Link>
+                <Link
+                  href="/cart"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="px-3 py-2 rounded-xl hover:bg-blue-50 dark:hover:bg-slate-800 hover:text-blue-600 dark:hover:text-blue-400 flex items-center justify-between transition-colors"
+                >
+                  <span>{t.nav.cart}</span>
+                  {cartCount > 0 && (
+                    <span className="text-xs bg-blue-600 text-white px-2 py-0.5 rounded-full font-bold font-mono">
+                      {cartCount}
+                    </span>
+                  )}
+                </Link>
+                <Link
+                  href="/wishlist"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="px-3 py-2 rounded-xl hover:bg-rose-50 dark:hover:bg-slate-800 hover:text-rose-600 dark:hover:text-rose-400 flex items-center justify-between transition-colors"
+                >
+                  <div className="flex items-center gap-2">
+                    <Heart className="w-4 h-4 text-rose-500" />
+                    <span>{t.nav.wishlist}</span>
+                  </div>
+                  {wishlistCount > 0 && (
+                    <span className="text-xs bg-rose-600 text-white px-2 py-0.5 rounded-full font-bold font-mono">
+                      {wishlistCount}
+                    </span>
+                  )}
+                </Link>
+                <Link
+                  href="/products?featured=true"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="px-3 py-2 rounded-xl hover:bg-blue-50 dark:hover:bg-slate-800 hover:text-blue-600 dark:hover:text-blue-400 flex items-center justify-between transition-colors"
+                >
+                  <span>{t.nav.offers}</span>
+                  <span className="text-xs bg-amber-100 dark:bg-amber-950 text-amber-800 dark:text-amber-300 px-2 py-0.5 rounded-full font-bold">
+                    HOT
+                  </span>
+                </Link>
+                <Link
+                  href="/contact"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="px-3 py-2 rounded-xl hover:bg-blue-50 dark:hover:bg-slate-800 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                >
+                  {t.nav.contact}
+                </Link>
+              </div>
+
+              {/* Hardware Categories Section */}
+              <div className="pt-3 border-t border-slate-100 dark:border-slate-800">
+                <p className="text-xs font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500 mb-2">
+                  Hardware Categories
+                </p>
+                <div className="grid grid-cols-2 gap-1.5 text-xs">
+                  {PRODUCT_CATEGORIES.map((cat) => (
+                    <Link
+                      key={cat}
+                      href={`/products?category=${encodeURIComponent(cat)}`}
+                      onClick={() => setMobileMenuOpen(false)}
+                      className="p-2 rounded-lg bg-slate-50 dark:bg-slate-800 hover:bg-blue-50 dark:hover:bg-slate-750 text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors truncate"
+                    >
+                      {cat}
+                    </Link>
+                  ))}
+                </div>
               </div>
             </div>
 
-            <div className="pt-4 border-t border-slate-100 dark:border-slate-800 flex gap-2">
+            {/* Drawer Sticky Footer with Quick Actions */}
+            <div className="p-3.5 border-t border-slate-100 dark:border-slate-800 bg-slate-50/80 dark:bg-slate-900/80 flex gap-2 shrink-0">
               <a
                 href={`tel:${SHOP_CONFIG.phone}`}
-                className="flex-1 flex items-center justify-center gap-2 py-2.5 bg-blue-600 text-white rounded-xl text-xs font-semibold shadow-xs"
+                className="flex-1 flex items-center justify-center gap-2 py-2.5 bg-blue-600 hover:bg-blue-700 text-white rounded-xl text-xs font-semibold shadow-xs transition-colors"
               >
                 <Phone className="w-4 h-4" />
                 <span>Call Shop</span>
@@ -537,7 +562,7 @@ export default function Navbar() {
                 href={`https://wa.me/${SHOP_CONFIG.whatsapp.replace(/[^0-9]/g, "")}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex-1 flex items-center justify-center gap-2 py-2.5 bg-emerald-600 text-white rounded-xl text-xs font-semibold shadow-xs"
+                className="flex-1 flex items-center justify-center gap-2 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-xs font-semibold shadow-xs transition-colors"
               >
                 <MessageCircle className="w-4 h-4" />
                 <span>WhatsApp</span>

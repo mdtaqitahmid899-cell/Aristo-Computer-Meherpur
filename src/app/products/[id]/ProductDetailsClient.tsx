@@ -200,27 +200,46 @@ export default function ProductDetailsClient({
 
               {/* Quantity Stepper & Cart / Wishlist Actions */}
               <div className="space-y-4 pt-4 border-t border-slate-200 dark:border-slate-800">
-                <div className="flex items-center gap-4 flex-wrap">
-                  {/* Quantity Stepper */}
-                  <div className="flex items-center border border-slate-200 dark:border-slate-700 rounded-xl bg-slate-50 dark:bg-slate-800 p-1">
+                <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4">
+                  {/* Quantity Stepper + Mobile Wishlist */}
+                  <div className="flex items-center gap-3">
+                    {/* Quantity Stepper */}
+                    <div className="flex items-center border border-slate-200 dark:border-slate-700 rounded-xl bg-slate-50 dark:bg-slate-800 p-1 shrink-0">
+                      <button
+                        type="button"
+                        onClick={() => setQuantity((q) => Math.max(1, q - 1))}
+                        disabled={quantity <= 1}
+                        className="w-8 h-8 rounded-lg bg-white dark:bg-slate-700 flex items-center justify-center text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-600 disabled:opacity-40 transition-colors cursor-pointer"
+                        aria-label="Decrease quantity"
+                      >
+                        <Minus className="w-3.5 h-3.5" />
+                      </button>
+                      <span className="w-10 sm:w-12 text-center text-xs font-bold font-mono text-slate-900 dark:text-white">
+                        {quantity}
+                      </span>
+                      <button
+                        type="button"
+                        onClick={() => setQuantity((q) => Math.min(product.stock, q + 1))}
+                        disabled={quantity >= product.stock}
+                        className="w-8 h-8 rounded-lg bg-white dark:bg-slate-700 flex items-center justify-center text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-600 disabled:opacity-40 transition-colors cursor-pointer"
+                        aria-label="Increase quantity"
+                      >
+                        <Plus className="w-3.5 h-3.5" />
+                      </button>
+                    </div>
+
+                    {/* Wishlist Button (mobile next to stepper) */}
                     <button
                       type="button"
-                      onClick={() => setQuantity((q) => Math.max(1, q - 1))}
-                      disabled={quantity <= 1}
-                      className="w-8 h-8 rounded-lg bg-white dark:bg-slate-700 flex items-center justify-center text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-600 disabled:opacity-40 transition-colors cursor-pointer"
+                      onClick={() => toggleWishlist(product)}
+                      className={`sm:hidden p-2.5 rounded-xl border transition-colors cursor-pointer shrink-0 ${
+                        isSaved
+                          ? "bg-rose-50 dark:bg-rose-950/60 text-rose-600 dark:text-rose-400 border-rose-200 dark:border-rose-800"
+                          : "bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-300 border-slate-200 dark:border-slate-700"
+                      }`}
+                      title={isSaved ? "Remove from wishlist" : "Save to wishlist"}
                     >
-                      <Minus className="w-3.5 h-3.5" />
-                    </button>
-                    <span className="w-12 text-center text-xs font-bold font-mono text-slate-900 dark:text-white">
-                      {quantity}
-                    </span>
-                    <button
-                      type="button"
-                      onClick={() => setQuantity((q) => Math.min(product.stock, q + 1))}
-                      disabled={quantity >= product.stock}
-                      className="w-8 h-8 rounded-lg bg-white dark:bg-slate-700 flex items-center justify-center text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-600 disabled:opacity-40 transition-colors cursor-pointer"
-                    >
-                      <Plus className="w-3.5 h-3.5" />
+                      <Heart className={`w-5 h-5 ${isSaved ? "fill-rose-600" : ""}`} />
                     </button>
                   </div>
 
@@ -229,17 +248,17 @@ export default function ProductDetailsClient({
                     type="button"
                     onClick={handleAddToCart}
                     disabled={!product.inStock || product.stock <= 0}
-                    className="flex-1 min-w-[160px] py-3 px-5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs shadow-md shadow-blue-600/20 flex items-center justify-center gap-2 transition-all cursor-pointer disabled:opacity-50"
+                    className="flex-1 py-3 px-5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs shadow-md shadow-blue-600/20 flex items-center justify-center gap-2 transition-all cursor-pointer disabled:opacity-50 min-w-0"
                   >
-                    <ShoppingCart className="w-4 h-4" />
-                    <span>Add to Cart ({quantity})</span>
+                    <ShoppingCart className="w-4 h-4 shrink-0" />
+                    <span className="truncate">Add to Cart ({quantity})</span>
                   </button>
 
-                  {/* Wishlist Button */}
+                  {/* Wishlist Button (desktop & tablet) */}
                   <button
                     type="button"
                     onClick={() => toggleWishlist(product)}
-                    className={`p-3 rounded-xl border transition-colors cursor-pointer ${
+                    className={`hidden sm:flex p-3 rounded-xl border transition-colors cursor-pointer shrink-0 ${
                       isSaved
                         ? "bg-rose-50 dark:bg-rose-950/60 text-rose-600 dark:text-rose-400 border-rose-200 dark:border-rose-800"
                         : "bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-300 border-slate-200 dark:border-slate-700"
@@ -428,7 +447,7 @@ export default function ProductDetailsClient({
               </Link>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
               {relatedProducts.slice(0, 4).map((rel) => (
                 <ProductCard key={rel.id} product={rel} />
               ))}

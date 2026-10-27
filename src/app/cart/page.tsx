@@ -228,7 +228,7 @@ export default function CartPage() {
                         | "Store Pickup"
                     )
                   }
-                  className="w-full p-2.5 rounded-xl border border-slate-200 dark:border-slate-700 text-xs text-slate-800 dark:text-slate-200 bg-slate-50 dark:bg-slate-800 focus:bg-white dark:focus:bg-slate-750 focus:outline-hidden focus:border-blue-500 font-medium"
+                  className="w-full p-2.5 rounded-xl border border-slate-200 dark:border-slate-700 text-base sm:text-xs text-slate-800 dark:text-slate-200 bg-slate-50 dark:bg-slate-800 focus:bg-white dark:focus:bg-slate-750 focus:outline-hidden focus:border-blue-500 font-medium"
                 >
                   <option value="Meherpur Sadar">Meherpur Sadar (Free Delivery)</option>
                   <option value="Gangni">Gangni Upazila (+৳100)</option>

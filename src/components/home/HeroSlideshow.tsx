@@ -259,10 +259,10 @@ export default function HeroSlideshow() {
       </div>
 
       {/* Slide Content Container */}
-      <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-28 lg:py-32 flex flex-col justify-between min-h-[520px] sm:min-h-[580px] lg:min-h-[640px]">
+      <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 sm:py-24 lg:py-32 flex flex-col justify-between min-h-[480px] sm:min-h-[580px] lg:min-h-[640px]">
         {/* Top Badges & Announcement */}
-        <div className="flex items-center gap-3">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-600/30 border border-blue-400/40 text-blue-300 text-xs font-semibold backdrop-blur-md shadow-xs animate-fade-in-up">
+        <div className="flex items-center gap-2 sm:gap-3 flex-wrap">
+          <div className="inline-flex items-center gap-2 px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-full bg-blue-600/30 border border-blue-400/40 text-blue-300 text-xs font-semibold backdrop-blur-md shadow-xs animate-fade-in-up">
             <BadgeIcon className="w-3.5 h-3.5 text-blue-400" />
             <span>{active.badge}</span>
           </div>
@@ -274,23 +274,23 @@ export default function HeroSlideshow() {
         </div>
 
         {/* Center Headline & Actions */}
-        <div className="max-w-2xl sm:max-w-3xl my-auto py-6 space-y-6">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black tracking-tight text-white leading-tight sm:leading-none">
+        <div className="max-w-2xl sm:max-w-3xl my-auto py-4 sm:py-6 space-y-4 sm:space-y-6">
+          <h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-black tracking-tight text-white leading-tight">
             <span className="text-transparent bg-clip-text bg-linear-to-r from-blue-400 via-sky-300 to-indigo-300">
               {active.titleHighlight}
             </span>{" "}
             <span>{active.titleEnd}</span>
           </h1>
 
-          <p className="text-sm sm:text-base md:text-lg text-slate-300 leading-relaxed font-light max-w-xl">
+          <p className="text-xs sm:text-base md:text-lg text-slate-300 leading-relaxed font-light max-w-xl">
             {active.description}
           </p>
 
           {/* Action Buttons */}
-          <div className="flex flex-wrap items-center gap-3 pt-2">
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 sm:gap-3 pt-2 w-full sm:w-auto">
             <Link
               href={active.primaryAction.href}
-              className="inline-flex items-center justify-center gap-2 px-6 sm:px-7 py-3 sm:py-3.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs sm:text-sm shadow-lg shadow-blue-600/30 hover:shadow-blue-500/50 hover:scale-102 active:scale-98 transition-all cursor-pointer"
+              className="inline-flex items-center justify-center gap-2 px-5 sm:px-7 py-2.5 sm:py-3.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs sm:text-sm shadow-lg shadow-blue-600/30 hover:shadow-blue-500/50 hover:scale-102 active:scale-98 transition-all cursor-pointer w-full sm:w-auto text-center"
             >
               <span>{active.primaryAction.label}</span>
               <ArrowRight className="w-4 h-4" />
@@ -302,7 +302,7 @@ export default function HeroSlideshow() {
                   href={active.secondaryAction.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`inline-flex items-center justify-center gap-2 px-6 sm:px-7 py-3 sm:py-3.5 rounded-xl font-bold text-xs sm:text-sm shadow-md transition-all cursor-pointer ${
+                  className={`inline-flex items-center justify-center gap-2 px-5 sm:px-7 py-2.5 sm:py-3.5 rounded-xl font-bold text-xs sm:text-sm shadow-md transition-all cursor-pointer w-full sm:w-auto text-center ${
                     active.secondaryAction.isWhatsApp
                       ? "bg-emerald-600 hover:bg-emerald-500 text-white shadow-emerald-600/20"
                       : "bg-slate-800/80 hover:bg-slate-700 text-slate-200 border border-slate-700 backdrop-blur-md"
@@ -314,7 +314,7 @@ export default function HeroSlideshow() {
               ) : (
                 <Link
                   href={active.secondaryAction.href}
-                  className="inline-flex items-center justify-center gap-2 px-6 sm:px-7 py-3 sm:py-3.5 rounded-xl bg-slate-800/80 hover:bg-slate-700 text-slate-200 font-bold text-xs sm:text-sm border border-slate-700 backdrop-blur-md transition-all cursor-pointer"
+                  className="inline-flex items-center justify-center gap-2 px-5 sm:px-7 py-2.5 sm:py-3.5 rounded-xl bg-slate-800/80 hover:bg-slate-700 text-slate-200 font-bold text-xs sm:text-sm border border-slate-700 backdrop-blur-md transition-all cursor-pointer w-full sm:w-auto text-center"
                 >
                   <span>{active.secondaryAction.label}</span>
                 </Link>
@@ -324,9 +324,9 @@ export default function HeroSlideshow() {
         </div>
 
         {/* Bottom Bar: Trust Badges & Slide Indicator Controls */}
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-6 pt-6 border-t border-slate-800/80">
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 sm:gap-6 pt-4 sm:pt-6 border-t border-slate-800/80">
           {/* Trust Value Props */}
-          <div className="grid grid-cols-2 sm:flex items-center gap-4 sm:gap-6 text-xs text-slate-400 font-medium w-full sm:w-auto">
+          <div className="grid grid-cols-2 sm:flex items-center gap-2.5 sm:gap-6 text-xs text-slate-400 font-medium w-full sm:w-auto">
             <div className="flex items-center gap-2">
               <ShieldCheck className="w-4 h-4 text-blue-400 shrink-0" />
               <span>100% Genuine</span>
@@ -346,7 +346,7 @@ export default function HeroSlideshow() {
           </div>
 
           {/* Dots Indicator & Navigation Controls */}
-          <div className="flex items-center gap-3">
+          <div className="flex items-center justify-between sm:justify-end w-full sm:w-auto gap-3">
             {/* Prev Button */}
             <button
               type="button"

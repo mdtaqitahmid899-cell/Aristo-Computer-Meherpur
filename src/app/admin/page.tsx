@@ -430,43 +430,43 @@ export default function AdminDashboardPage() {
         </div>
 
         {/* Admin Navigation Tabs */}
-        <div className="flex border-b border-slate-200 dark:border-slate-800 gap-2 bg-white dark:bg-slate-900 px-6 pt-3 rounded-t-2xl border-t border-x dark:border-t-slate-800 dark:border-x-slate-800 transition-colors">
+        <div className="flex border-b border-slate-200 dark:border-slate-800 gap-2 bg-white dark:bg-slate-900 px-4 sm:px-6 pt-3 rounded-t-2xl border-t border-x dark:border-t-slate-800 dark:border-x-slate-800 transition-colors overflow-x-auto scrollbar-none whitespace-nowrap">
           <button
             type="button"
             onClick={() => setActiveTab("products")}
-            className={`pb-3 px-4 text-xs font-bold border-b-2 flex items-center gap-2 transition-colors cursor-pointer ${
+            className={`pb-3 px-3 sm:px-4 text-xs font-bold border-b-2 flex items-center gap-2 transition-colors cursor-pointer shrink-0 ${
               activeTab === "products"
                 ? "border-blue-600 text-blue-600 dark:text-blue-400 dark:border-blue-500"
                 : "border-transparent text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-white"
             }`}
           >
-            <Package className="w-4 h-4" />
+            <Package className="w-4 h-4 shrink-0" />
             <span>Products Inventory ({products.length})</span>
           </button>
 
           <button
             type="button"
             onClick={() => setActiveTab("orders")}
-            className={`pb-3 px-4 text-xs font-bold border-b-2 flex items-center gap-2 transition-colors cursor-pointer ${
+            className={`pb-3 px-3 sm:px-4 text-xs font-bold border-b-2 flex items-center gap-2 transition-colors cursor-pointer shrink-0 ${
               activeTab === "orders"
                 ? "border-blue-600 text-blue-600 dark:text-blue-400 dark:border-blue-500"
                 : "border-transparent text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-white"
             }`}
           >
-            <ClipboardList className="w-4 h-4" />
+            <ClipboardList className="w-4 h-4 shrink-0" />
             <span>Customer Orders ({orders.length})</span>
           </button>
 
           <button
             type="button"
             onClick={() => setActiveTab("settings")}
-            className={`pb-3 px-4 text-xs font-bold border-b-2 flex items-center gap-2 transition-colors cursor-pointer ${
+            className={`pb-3 px-3 sm:px-4 text-xs font-bold border-b-2 flex items-center gap-2 transition-colors cursor-pointer shrink-0 ${
               activeTab === "settings"
                 ? "border-blue-600 text-blue-600 dark:text-blue-400 dark:border-blue-500"
                 : "border-transparent text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-white"
             }`}
           >
-            <Settings className="w-4 h-4" />
+            <Settings className="w-4 h-4 shrink-0" />
             <span>Shop Configuration</span>
           </button>
         </div>

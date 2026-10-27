@@ -322,7 +322,7 @@ export default function CameraSetupClient() {
                   <select
                     value={cameraCount}
                     onChange={(e) => setCameraCount(e.target.value)}
-                    className="w-full bg-slate-900 border border-slate-800 rounded-xl px-4 py-3 text-xs text-white focus:outline-hidden focus:border-indigo-500 cursor-pointer"
+                    className="w-full bg-slate-900 border border-slate-800 rounded-xl px-4 py-3 text-base sm:text-xs text-white focus:outline-hidden focus:border-indigo-500 cursor-pointer"
                   >
                     <option value="2">2 Cameras (Small Area / Entry)</option>
                     <option value="4">4 Cameras (Standard Home / Shop)</option>
@@ -339,7 +339,7 @@ export default function CameraSetupClient() {
                   <select
                     value={cameraType}
                     onChange={(e) => setCameraType(e.target.value)}
-                    className="w-full bg-slate-900 border border-slate-800 rounded-xl px-4 py-3 text-xs text-white focus:outline-hidden focus:border-indigo-500 cursor-pointer"
+                    className="w-full bg-slate-900 border border-slate-800 rounded-xl px-4 py-3 text-base sm:text-xs text-white focus:outline-hidden focus:border-indigo-500 cursor-pointer"
                   >
                     <option value="colorVu">ColorVu (24/7 Color Night Vision)</option>
                     <option value="ipPoE">IP PoE (Digital 4K Cameras)</option>
@@ -355,7 +355,7 @@ export default function CameraSetupClient() {
                   <select
                     value={storageDays}
                     onChange={(e) => setStorageDays(e.target.value)}
-                    className="w-full bg-slate-900 border border-slate-800 rounded-xl px-4 py-3 text-xs text-white focus:outline-hidden focus:border-indigo-500 cursor-pointer"
+                    className="w-full bg-slate-900 border border-slate-800 rounded-xl px-4 py-3 text-base sm:text-xs text-white focus:outline-hidden focus:border-indigo-500 cursor-pointer"
                   >
                     <option value="15">15 Days (1TB Surveillance HDD)</option>
                     <option value="30">30 Days (2TB Surveillance HDD)</option>
@@ -371,21 +371,21 @@ export default function CameraSetupClient() {
                   placeholder={isBangla ? "আপনার নাম" : "Your Name"}
                   value={customerName}
                   onChange={(e) => setCustomerName(e.target.value)}
-                  className="bg-slate-900 border border-slate-800 rounded-xl px-4 py-3 text-xs text-white placeholder:text-slate-500 focus:outline-hidden focus:border-indigo-500"
+                  className="bg-slate-900 border border-slate-800 rounded-xl px-4 py-3 text-base sm:text-xs text-white placeholder:text-slate-500 focus:outline-hidden focus:border-indigo-500"
                 />
                 <input
                   type="tel"
                   placeholder={isBangla ? "মোবাইল নাম্বার" : "Mobile Phone Number"}
                   value={customerPhone}
                   onChange={(e) => setCustomerPhone(e.target.value)}
-                  className="bg-slate-900 border border-slate-800 rounded-xl px-4 py-3 text-xs text-white placeholder:text-slate-500 focus:outline-hidden focus:border-indigo-500"
+                  className="bg-slate-900 border border-slate-800 rounded-xl px-4 py-3 text-base sm:text-xs text-white placeholder:text-slate-500 focus:outline-hidden focus:border-indigo-500"
                 />
                 <input
                   type="text"
                   placeholder={isBangla ? "ঠিকানা / এলাকা (যেমন: মেহেরপুর সদর)" : "Location (e.g. Meherpur Sadar)"}
                   value={customerLocation}
                   onChange={(e) => setCustomerLocation(e.target.value)}
-                  className="bg-slate-900 border border-slate-800 rounded-xl px-4 py-3 text-xs text-white placeholder:text-slate-500 focus:outline-hidden focus:border-indigo-500"
+                  className="bg-slate-900 border border-slate-800 rounded-xl px-4 py-3 text-base sm:text-xs text-white placeholder:text-slate-500 focus:outline-hidden focus:border-indigo-500"
                 />
               </div>
 

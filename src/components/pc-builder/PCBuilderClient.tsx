@@ -246,40 +246,40 @@ export default function PCBuilderClient({ initialProducts }: PCBuilderClientProp
         </div>
 
         {/* Builder Status Banner */}
-        <div className="bg-white dark:bg-slate-900 rounded-3xl p-6 border border-slate-200 dark:border-slate-800 shadow-xs flex flex-col sm:flex-row items-center justify-between gap-6 transition-colors">
-          <div className="flex items-center gap-6 divide-x divide-slate-100 dark:divide-slate-800 flex-wrap">
+        <div className="bg-white dark:bg-slate-900 rounded-3xl p-5 sm:p-6 border border-slate-200 dark:border-slate-800 shadow-xs flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-5 sm:gap-6 transition-colors">
+          <div className="grid grid-cols-2 sm:flex sm:items-center gap-4 sm:gap-6">
             <div>
               <span className="text-xs text-slate-400 dark:text-slate-500 block font-medium">Estimated Total</span>
-              <span className="text-2xl sm:text-3xl font-black text-blue-600 dark:text-blue-400 font-mono">
+              <span className="text-xl sm:text-2xl md:text-3xl font-black text-blue-600 dark:text-blue-400 font-mono">
                 {formatPrice(totalPrice)}
               </span>
             </div>
 
-            <div className="pl-6">
+            <div className="sm:border-l sm:border-slate-200 sm:dark:border-slate-800 sm:pl-6">
               <span className="text-xs text-slate-400 dark:text-slate-500 block font-medium">Power Estimate</span>
-              <span className="text-xl sm:text-2xl font-bold text-slate-800 dark:text-slate-200 font-mono flex items-center gap-1">
+              <span className="text-lg sm:text-xl md:text-2xl font-bold text-slate-800 dark:text-slate-200 font-mono flex items-center gap-1">
                 <Zap className="w-4 h-4 text-amber-500 fill-amber-500" />
                 <span>~{estimatedWattage}W</span>
               </span>
             </div>
 
-            <div className="pl-6">
+            <div className="col-span-2 sm:col-span-1 sm:border-l sm:border-slate-200 sm:dark:border-slate-800 sm:pl-6">
               <span className="text-xs text-slate-400 dark:text-slate-500 block font-medium">Components</span>
-              <span className="text-base font-bold text-slate-700 dark:text-slate-300">
+              <span className="text-xs sm:text-base font-bold text-slate-700 dark:text-slate-300">
                 {selectedCount} of {SLOTS.length} selected
               </span>
             </div>
           </div>
 
           {/* Action CTAs */}
-          <div className="flex items-center gap-3 w-full sm:w-auto">
+          <div className="flex items-center gap-2.5 sm:gap-3 w-full sm:w-auto">
             <button
               type="button"
               disabled={selectedCount === 0}
               onClick={handleAddAllToCart}
-              className="flex-1 sm:flex-none px-5 py-3 rounded-xl bg-blue-50 dark:bg-blue-950/60 hover:bg-blue-100 dark:hover:bg-blue-900/60 text-blue-700 dark:text-blue-300 text-xs font-bold transition-colors flex items-center justify-center gap-2 cursor-pointer disabled:opacity-40 border border-blue-200 dark:border-blue-800/50"
+              className="flex-1 sm:flex-none px-4 sm:px-5 py-2.5 sm:py-3 rounded-xl bg-blue-50 dark:bg-blue-950/60 hover:bg-blue-100 dark:hover:bg-blue-900/60 text-blue-700 dark:text-blue-300 text-xs font-bold transition-colors flex items-center justify-center gap-1.5 sm:gap-2 cursor-pointer disabled:opacity-40 border border-blue-200 dark:border-blue-800/50"
             >
-              <ShoppingCart className="w-4 h-4" />
+              <ShoppingCart className="w-4 h-4 shrink-0" />
               <span>Add to Cart</span>
             </button>
 
@@ -287,9 +287,9 @@ export default function PCBuilderClient({ initialProducts }: PCBuilderClientProp
               type="button"
               disabled={selectedCount === 0}
               onClick={handleOrderPCWhatsApp}
-              className="flex-1 sm:flex-none px-6 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold shadow-md shadow-emerald-600/20 flex items-center justify-center gap-2 transition-all cursor-pointer disabled:opacity-40"
+              className="flex-1 sm:flex-none px-4 sm:px-6 py-2.5 sm:py-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold shadow-md shadow-emerald-600/20 flex items-center justify-center gap-1.5 sm:gap-2 transition-all cursor-pointer disabled:opacity-40"
             >
-              <MessageCircle className="w-4 h-4" />
+              <MessageCircle className="w-4 h-4 shrink-0" />
               <span>Order on WhatsApp</span>
             </button>
           </div>
@@ -415,8 +415,13 @@ export default function PCBuilderClient({ initialProducts }: PCBuilderClientProp
 
       {/* Component Picker Modal */}
       {activeSlot && (
-        <div className="fixed inset-0 z-50 bg-slate-900/60 dark:bg-black/70 backdrop-blur-xs flex items-center justify-center p-4">
-          <div className="bg-white dark:bg-slate-900 rounded-3xl max-w-2xl w-full p-6 shadow-2xl space-y-4 max-h-[85vh] flex flex-col border border-slate-200 dark:border-slate-800 transition-colors">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4">
+          <div
+            className="fixed inset-0 bg-slate-900/60 dark:bg-black/70 backdrop-blur-xs transition-opacity"
+            onClick={() => setActiveSlot(null)}
+            aria-hidden="true"
+          />
+          <div className="relative z-10 bg-white dark:bg-slate-900 rounded-3xl max-w-2xl w-full p-4 sm:p-6 shadow-2xl space-y-4 max-h-[85vh] flex flex-col border border-slate-200 dark:border-slate-800 transition-colors">
             <div className="flex items-center justify-between pb-3 border-b border-slate-100 dark:border-slate-800">
               <div>
                 <h3 className="font-bold text-slate-900 dark:text-white text-base">
@@ -427,8 +432,10 @@ export default function PCBuilderClient({ initialProducts }: PCBuilderClientProp
                 </p>
               </div>
               <button
+                type="button"
                 onClick={() => setActiveSlot(null)}
-                className="p-1 rounded-full text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 cursor-pointer"
+                className="p-1.5 rounded-full text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 cursor-pointer"
+                aria-label="Close"
               >
                 <X className="w-5 h-5" />
               </button>
@@ -441,7 +448,7 @@ export default function PCBuilderClient({ initialProducts }: PCBuilderClientProp
                 placeholder={`Search ${activeSlot.name.toLowerCase()}...`}
                 value={modalSearch}
                 onChange={(e) => setModalSearch(e.target.value)}
-                className="w-full pl-9 pr-4 py-2 text-xs rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white placeholder:text-slate-400 focus:outline-hidden focus:border-blue-500"
+                className="w-full pl-9 pr-4 py-2 text-base sm:text-xs rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white placeholder:text-slate-400 focus:outline-hidden focus:border-blue-500"
               />
               <Search className="w-3.5 h-3.5 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
             </div>
@@ -485,7 +492,7 @@ export default function PCBuilderClient({ initialProducts }: PCBuilderClientProp
                       <button
                         type="button"
                         onClick={() => handleSelectProduct(activeSlot.id, p)}
-                        className="px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-semibold shadow-xs flex items-center gap-1 shrink-0 cursor-pointer"
+                        className="px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-semibold shadow-xs flex items-center gap-1 shrink-0 cursor-pointer"
                       >
                         <Check className="w-3.5 h-3.5" />
                         <span>Select</span>
@@ -505,8 +512,13 @@ export default function PCBuilderClient({ initialProducts }: PCBuilderClientProp
 
       {/* Print / Quotation Preview Modal */}
       {showPrintQuote && (
-        <div className="fixed inset-0 z-50 bg-slate-900/60 dark:bg-black/70 backdrop-blur-xs flex items-center justify-center p-4">
-          <div className="bg-white dark:bg-slate-900 rounded-3xl max-w-xl w-full p-6 sm:p-8 shadow-2xl space-y-6 max-h-[90vh] overflow-y-auto border border-slate-200 dark:border-slate-800 transition-colors">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4">
+          <div
+            className="fixed inset-0 bg-slate-900/60 dark:bg-black/70 backdrop-blur-xs transition-opacity"
+            onClick={() => setShowPrintQuote(false)}
+            aria-hidden="true"
+          />
+          <div className="relative z-10 bg-white dark:bg-slate-900 rounded-3xl max-w-xl w-full p-4 sm:p-8 shadow-2xl space-y-6 max-h-[90vh] overflow-y-auto border border-slate-200 dark:border-slate-800 transition-colors">
             {/* Header info */}
             <div className="flex items-center justify-between border-b border-slate-200 dark:border-slate-800 pb-4">
               <div className="flex items-center gap-3">

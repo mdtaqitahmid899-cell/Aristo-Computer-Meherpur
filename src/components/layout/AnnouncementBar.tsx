@@ -28,7 +28,7 @@ export default function AnnouncementBar() {
         </div>
 
         {/* Right: Warranty, Phone, WhatsApp */}
-        <div className="flex items-center gap-4">
+        <div className="flex items-center justify-center gap-3 sm:gap-4 flex-wrap">
           <div className="hidden lg:flex items-center gap-1.5 text-emerald-400 font-medium">
             <ShieldCheck className="w-3.5 h-3.5 shrink-0" />
             <span>{t.common.genuineWarranty}</span>

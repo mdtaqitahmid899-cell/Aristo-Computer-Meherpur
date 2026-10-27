@@ -240,7 +240,7 @@ export default function ProductCatalogClient() {
                     placeholder="Search model, brand..."
                     value={search}
                     onChange={(e) => setSearch(e.target.value)}
-                    className="w-full pl-9 pr-3 py-2 text-xs rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white focus:outline-hidden focus:border-blue-500 focus:ring-2 focus:ring-blue-100 dark:focus:ring-blue-900/30"
+                    className="w-full pl-9 pr-3 py-2 text-base sm:text-xs rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white focus:outline-hidden focus:border-blue-500 focus:ring-2 focus:ring-blue-100 dark:focus:ring-blue-900/30"
                   />
                   <Search className="w-3.5 h-3.5 text-slate-400 dark:text-slate-500 absolute left-3 top-1/2 -translate-y-1/2" />
                   {search && (
@@ -325,14 +325,14 @@ export default function ProductCatalogClient() {
                     placeholder="Min ৳"
                     value={minPrice}
                     onChange={(e) => setMinPrice(e.target.value)}
-                    className="w-full px-3 py-2 text-xs rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white font-mono focus:outline-hidden focus:border-blue-500"
+                    className="w-full px-3 py-2 text-base sm:text-xs rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white font-mono focus:outline-hidden focus:border-blue-500"
                   />
                   <input
                     type="number"
                     placeholder="Max ৳"
                     value={maxPrice}
                     onChange={(e) => setMaxPrice(e.target.value)}
-                    className="w-full px-3 py-2 text-xs rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white font-mono focus:outline-hidden focus:border-blue-500"
+                    className="w-full px-3 py-2 text-base sm:text-xs rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white font-mono focus:outline-hidden focus:border-blue-500"
                   />
                 </div>
               </div>
@@ -447,7 +447,7 @@ export default function ProductCatalogClient() {
 
             {/* Products Grid */}
             {loading ? (
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-4 sm:gap-6">
                 {[...Array(6)].map((_, i) => (
                   <div
                     key={i}
@@ -465,7 +465,7 @@ export default function ProductCatalogClient() {
                 ))}
               </div>
             ) : filteredProducts.length > 0 ? (
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-4 sm:gap-6">
                 {filteredProducts.map((product) => (
                   <ProductCard key={product.id} product={product} />
                 ))}
@@ -512,14 +512,23 @@ export default function ProductCatalogClient() {
 
       {/* Mobile Filters Modal Drawer */}
       {mobileFiltersOpen && (
-        <div className="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-xs flex justify-end">
-          <div className="w-full max-w-xs bg-white dark:bg-slate-900 h-full p-6 overflow-y-auto space-y-6 flex flex-col justify-between shadow-2xl border-l border-slate-200 dark:border-slate-800">
+        <div className="fixed inset-0 z-50 flex justify-end">
+          {/* Backdrop */}
+          <div
+            className="fixed inset-0 bg-slate-950/70 backdrop-blur-xs transition-opacity"
+            onClick={() => setMobileFiltersOpen(false)}
+            aria-hidden="true"
+          />
+
+          <div className="relative z-10 w-full max-w-xs bg-white dark:bg-slate-900 h-full p-5 sm:p-6 overflow-y-auto space-y-6 flex flex-col justify-between shadow-2xl border-l border-slate-200 dark:border-slate-800">
             <div className="space-y-6">
               <div className="flex items-center justify-between pb-3 border-b border-slate-100 dark:border-slate-800">
                 <span className="font-bold text-slate-900 dark:text-white text-base">Filter Products</span>
                 <button
+                  type="button"
                   onClick={() => setMobileFiltersOpen(false)}
-                  className="p-1 rounded-full text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 cursor-pointer"
+                  className="p-1.5 rounded-full text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 cursor-pointer"
+                  aria-label="Close filters"
                 >
                   <X className="w-5 h-5" />
                 </button>
@@ -533,7 +542,7 @@ export default function ProductCatalogClient() {
                 <select
                   value={selectedCategory}
                   onChange={(e) => setSelectedCategory(e.target.value)}
-                  className="w-full p-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white text-xs"
+                  className="w-full p-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white text-base sm:text-xs"
                 >
                   <option value="All">All Categories</option>
                   {PRODUCT_CATEGORIES.map((c) => (
@@ -552,7 +561,7 @@ export default function ProductCatalogClient() {
                 <select
                   value={selectedBrand}
                   onChange={(e) => setSelectedBrand(e.target.value)}
-                  className="w-full p-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white text-xs"
+                  className="w-full p-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white text-base sm:text-xs"
                 >
                   <option value="All">All Brands</option>
                   {availableBrands.map((b) => (
@@ -574,14 +583,14 @@ export default function ProductCatalogClient() {
                     placeholder="Min ৳"
                     value={minPrice}
                     onChange={(e) => setMinPrice(e.target.value)}
-                    className="w-full p-2 text-xs rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white font-mono"
+                    className="w-full p-2 text-base sm:text-xs rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white font-mono"
                   />
                   <input
                     type="number"
                     placeholder="Max ৳"
                     value={maxPrice}
                     onChange={(e) => setMaxPrice(e.target.value)}
-                    className="w-full p-2 text-xs rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white font-mono"
+                    className="w-full p-2 text-base sm:text-xs rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white font-mono"
                   />
                 </div>
               </div>
@@ -604,21 +613,26 @@ export default function ProductCatalogClient() {
                     onChange={(e) => setFeaturedOnly(e.target.checked)}
                     className="w-4 h-4 text-amber-500 rounded"
                   />
-                  <span>Featured Items Only</span>
+                  <span className="flex items-center gap-1">
+                    <Sparkles className="w-3.5 h-3.5 text-amber-500" />
+                    <span>Featured Items Only</span>
+                  </span>
                 </label>
               </div>
             </div>
 
-            <div className="pt-6 border-t border-slate-100 dark:border-slate-800 flex gap-2">
+            <div className="pt-4 border-t border-slate-100 dark:border-slate-800 flex gap-2">
               <button
+                type="button"
                 onClick={handleResetFilters}
-                className="flex-1 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 text-xs font-semibold cursor-pointer"
+                className="flex-1 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 text-xs font-semibold cursor-pointer hover:bg-slate-50 dark:hover:bg-slate-800"
               >
                 Reset
               </button>
               <button
+                type="button"
                 onClick={() => setMobileFiltersOpen(false)}
-                className="flex-1 py-2.5 rounded-xl bg-blue-600 text-white text-xs font-semibold shadow-xs cursor-pointer"
+                className="flex-1 py-2.5 rounded-xl bg-blue-600 text-white text-xs font-semibold shadow-xs cursor-pointer hover:bg-blue-700"
               >
                 Show Results
               </button>

@@ -88,7 +88,7 @@ export default function WishlistPage() {
             </Link>
           </div>
         ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
             {wishlist.map((product) => {
               const primaryImage =
                 product.images && product.images.length > 0
@@ -146,7 +146,7 @@ export default function WishlistPage() {
                   </div>
 
                   {/* Body */}
-                  <div className="p-4 flex-1 flex flex-col justify-between space-y-3">
+                  <div className="p-3.5 sm:p-4 flex-1 flex flex-col justify-between space-y-3">
                     <div>
                       <div className="flex items-center justify-between text-[11px] text-slate-500 dark:text-slate-400 mb-1">
                         <span className="font-semibold text-blue-600 dark:text-blue-400">{product.brand}</span>
@@ -174,15 +174,15 @@ export default function WishlistPage() {
                       </div>
 
                       {/* Action buttons */}
-                      <div className="grid grid-cols-2 gap-2">
+                      <div className="grid grid-cols-2 gap-1.5 sm:gap-2">
                         <button
                           type="button"
                           onClick={() => addToCart(product, 1)}
                           disabled={product.stock === 0}
-                          className="flex items-center justify-center gap-1.5 py-2 px-3 bg-blue-600 hover:bg-blue-700 disabled:bg-slate-200 dark:disabled:bg-slate-800 text-white disabled:text-slate-400 text-xs font-bold rounded-xl transition-colors cursor-pointer disabled:cursor-not-allowed"
+                          className="flex items-center justify-center gap-1 sm:gap-1.5 py-2 px-1.5 sm:px-3 bg-blue-600 hover:bg-blue-700 disabled:bg-slate-200 dark:disabled:bg-slate-800 text-white disabled:text-slate-400 text-[11px] sm:text-xs font-bold rounded-xl transition-colors cursor-pointer disabled:cursor-not-allowed min-w-0"
                         >
-                          <ShoppingCart className="w-3.5 h-3.5" />
-                          <span>{product.stock === 0 ? "Out of Stock" : "Add to Cart"}</span>
+                          <ShoppingCart className="w-3.5 h-3.5 shrink-0" />
+                          <span className="truncate">{product.stock === 0 ? "Out of Stock" : "Add to Cart"}</span>
                         </button>
 
                         <a
@@ -201,10 +201,10 @@ export default function WishlistPage() {
                           }}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="flex items-center justify-center gap-1.5 py-2 px-3 bg-emerald-50 dark:bg-emerald-950/50 hover:bg-emerald-100 dark:hover:bg-emerald-900/50 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800/50 text-xs font-bold rounded-xl transition-colors"
+                          className="flex items-center justify-center gap-1 sm:gap-1.5 py-2 px-1.5 sm:px-3 bg-emerald-50 dark:bg-emerald-950/50 hover:bg-emerald-100 dark:hover:bg-emerald-900/50 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800/50 text-[11px] sm:text-xs font-bold rounded-xl transition-colors min-w-0"
                         >
-                          <MessageCircle className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
-                          <span>WhatsApp</span>
+                          <MessageCircle className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400 shrink-0" />
+                          <span className="truncate">WhatsApp</span>
                         </a>
                       </div>
                     </div>
