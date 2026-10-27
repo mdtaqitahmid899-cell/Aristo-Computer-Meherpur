@@ -39,6 +39,7 @@ interface SlideData {
   };
   imageUrl: string;
   imageAlt: string;
+  tagText: string;
 }
 
 const SLIDES: SlideData[] = [
@@ -64,6 +65,7 @@ const SLIDES: SlideData[] = [
     },
     imageUrl: "/images/hero/hero-desktop.jpg",
     imageAlt: "Custom Gaming PC at Aristo Computer Meherpur",
+    tagText: "Custom RTX & Ryzen Rigs",
   },
   {
     id: "laptops",
@@ -83,6 +85,7 @@ const SLIDES: SlideData[] = [
     },
     imageUrl: "/images/hero/hero-laptop.jpg",
     imageAlt: "Gaming and Ultrabook Laptops in Meherpur",
+    tagText: "Official Brand Warranty",
   },
   {
     id: "components",
@@ -102,6 +105,7 @@ const SLIDES: SlideData[] = [
     },
     imageUrl: "/images/hero/hero-components.jpg",
     imageAlt: "High Performance Processors and Motherboards",
+    tagText: "Top Tier Components",
   },
   {
     id: "monitors-accessories",
@@ -121,6 +125,7 @@ const SLIDES: SlideData[] = [
     },
     imageUrl: "/images/hero/hero-monitors.jpg",
     imageAlt: "Gaming Monitors and Mechanical Peripherals",
+    tagText: "High Refresh Displays",
   },
   {
     id: "camera-setup",
@@ -143,7 +148,8 @@ const SLIDES: SlideData[] = [
       isWhatsApp: true,
     },
     imageUrl: "/images/hero/hero-cctv.jpg",
-    imageAlt: "CCTV Camera and Security Surveillance Setup in Meherpur",
+    imageAlt: "CCTV Camera Setup in Meherpur",
+    tagText: "24/7 ColorVu Night Vision",
   },
 ];
 
@@ -161,42 +167,18 @@ export default function HeroSlideshow() {
     setCurrentSlide((prev) => (prev - 1 + SLIDES.length) % SLIDES.length);
   }, []);
 
-  // Autoplay timer with pause on hover & visibility check
+  // Automatic slide rotation every 6 seconds
   useEffect(() => {
     if (isPaused) return;
 
-    const interval = setInterval(() => {
+    const timer = setInterval(() => {
       nextSlide();
-    }, 5500);
+    }, 6000);
 
-    return () => clearInterval(interval);
+    return () => clearInterval(timer);
   }, [isPaused, nextSlide]);
 
-  // Pause when browser tab is inactive
-  useEffect(() => {
-    const handleVisibilityChange = () => {
-      setIsPaused(document.hidden);
-    };
-
-    document.addEventListener("visibilitychange", handleVisibilityChange);
-    return () => document.removeEventListener("visibilitychange", handleVisibilityChange);
-  }, []);
-
-  // Keyboard navigation (Arrow keys)
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "ArrowLeft") {
-        prevSlide();
-      } else if (e.key === "ArrowRight") {
-        nextSlide();
-      }
-    };
-
-    window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [nextSlide, prevSlide]);
-
-  // Touch swipe support for mobile
+  // Touch gesture handlers for mobile horizontal swipe
   const handleTouchStart = (e: React.TouchEvent) => {
     touchStartX.current = e.targetTouches[0].clientX;
   };
@@ -221,9 +203,6 @@ export default function HeroSlideshow() {
     touchEndX.current = null;
   };
 
-  const active = SLIDES[currentSlide];
-  const BadgeIcon = active.badgeIcon;
-
   return (
     <div
       className="relative overflow-hidden bg-slate-950 text-white select-none group"
@@ -234,97 +213,146 @@ export default function HeroSlideshow() {
       onTouchEnd={handleTouchEnd}
       aria-label="Computer hardware promotions and featured gear"
     >
-      {/* Background slide imagery with smooth cross-fade */}
-      <div className="absolute inset-0">
-        {SLIDES.map((slide, index) => (
-          <div
-            key={slide.id}
-            className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
-              index === currentSlide ? "opacity-100 z-10 scale-100" : "opacity-0 z-0 scale-105"
-            } transition-transform duration-7000`}
-          >
-            <Image
-              src={slide.imageUrl}
-              alt={slide.imageAlt}
-              fill
-              priority={index === 0}
-              sizes="100vw"
-              className="object-cover object-center"
-            />
-            {/* Rich gradient overlays for crisp text legibility */}
-            <div className="absolute inset-0 bg-linear-to-r from-slate-950/95 via-slate-950/80 to-slate-950/30" />
-            <div className="absolute inset-0 bg-linear-to-t from-slate-950 via-transparent to-slate-950/40" />
-          </div>
-        ))}
+      {/* Background ambient lighting */}
+      <div className="absolute -top-32 -left-32 w-96 h-96 bg-blue-600/15 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute -bottom-32 -right-32 w-96 h-96 bg-indigo-600/15 rounded-full blur-3xl pointer-events-none" />
+
+      {/* Horizontal Side-by-Side Sliding Track */}
+      <div
+        className="flex transition-transform duration-700 ease-out"
+        style={{ transform: `translateX(-${currentSlide * 100}%)` }}
+      >
+        {SLIDES.map((slide, index) => {
+          const BadgeIcon = slide.badgeIcon;
+
+          return (
+            <div
+              key={slide.id}
+              className="min-w-full w-full shrink-0 relative flex flex-col justify-between py-10 sm:py-16 lg:py-20 px-4 sm:px-6 lg:px-8 min-h-[520px] sm:min-h-[560px] lg:min-h-[600px]"
+            >
+              <div className="max-w-7xl mx-auto w-full my-auto">
+                {/* Side-by-Side Grid: Text on Left, Product Imagery on Right */}
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+                  {/* Left Column: Headlines & Actions */}
+                  <div className="lg:col-span-7 space-y-4 sm:space-y-6">
+                    {/* Top Badges */}
+                    <div className="flex items-center gap-2 sm:gap-3 flex-wrap">
+                      <div className="inline-flex items-center gap-2 px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-full bg-blue-600/30 border border-blue-400/40 text-blue-300 text-xs font-semibold backdrop-blur-md shadow-xs">
+                        <BadgeIcon className="w-3.5 h-3.5 text-blue-400" />
+                        <span>{slide.badge}</span>
+                      </div>
+
+                      <div className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-900/60 border border-slate-700/60 text-slate-300 text-xs backdrop-blur-md">
+                        <Sparkles className="w-3.5 h-3.5 text-amber-400" />
+                        <span>Aristo Computer Meherpur</span>
+                      </div>
+                    </div>
+
+                    {/* Headline */}
+                    <h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-black tracking-tight text-white leading-tight">
+                      <span className="text-transparent bg-clip-text bg-linear-to-r from-blue-400 via-sky-300 to-indigo-300">
+                        {slide.titleHighlight}
+                      </span>{" "}
+                      <span>{slide.titleEnd}</span>
+                    </h1>
+
+                    {/* Subtitle / Description */}
+                    <p className="text-xs sm:text-base text-slate-300 leading-relaxed font-light max-w-xl">
+                      {slide.description}
+                    </p>
+
+                    {/* Action Buttons */}
+                    <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 sm:gap-3 pt-2 w-full sm:w-auto">
+                      <Link
+                        href={slide.primaryAction.href}
+                        className="inline-flex items-center justify-center gap-2 px-5 sm:px-7 py-2.5 sm:py-3.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs sm:text-sm shadow-lg shadow-blue-600/30 hover:shadow-blue-500/50 hover:scale-102 active:scale-98 transition-all cursor-pointer w-full sm:w-auto text-center"
+                      >
+                        <span>{slide.primaryAction.label}</span>
+                        <ArrowRight className="w-4 h-4" />
+                      </Link>
+
+                      {slide.secondaryAction && (
+                        slide.secondaryAction.isExternal ? (
+                          <a
+                            href={slide.secondaryAction.href}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className={`inline-flex items-center justify-center gap-2 px-5 sm:px-7 py-2.5 sm:py-3.5 rounded-xl font-bold text-xs sm:text-sm shadow-md transition-all cursor-pointer w-full sm:w-auto text-center ${
+                              slide.secondaryAction.isWhatsApp
+                                ? "bg-emerald-600 hover:bg-emerald-500 text-white shadow-emerald-600/20"
+                                : "bg-slate-800/80 hover:bg-slate-700 text-slate-200 border border-slate-700 backdrop-blur-md"
+                            }`}
+                          >
+                            {slide.secondaryAction.isWhatsApp && <MessageCircle className="w-4 h-4" />}
+                            <span>{slide.secondaryAction.label}</span>
+                          </a>
+                        ) : (
+                          <Link
+                            href={slide.secondaryAction.href}
+                            className="inline-flex items-center justify-center gap-2 px-5 sm:px-7 py-2.5 sm:py-3.5 rounded-xl bg-slate-800/80 hover:bg-slate-700 text-slate-200 font-bold text-xs sm:text-sm border border-slate-700 backdrop-blur-md transition-all cursor-pointer w-full sm:w-auto text-center"
+                          >
+                            <span>{slide.secondaryAction.label}</span>
+                          </Link>
+                        )
+                      )}
+                    </div>
+                  </div>
+
+                  {/* Right Column: Hardware Showcase Imagery (Side-by-Side Presentation) */}
+                  <div className="lg:col-span-5 flex items-center justify-center relative">
+                    {/* Glowing backlight */}
+                    <div className="absolute w-64 h-64 sm:w-80 sm:h-80 bg-blue-500/20 rounded-full blur-3xl pointer-events-none" />
+
+                    {/* Image Card Container */}
+                    <div className="relative w-full max-w-md sm:max-w-lg lg:max-w-none aspect-16/10 sm:aspect-16/9 lg:aspect-4/3 rounded-2xl sm:rounded-3xl overflow-hidden border border-slate-800/80 shadow-2xl bg-slate-900/60 group/card">
+                      <Image
+                        src={slide.imageUrl}
+                        alt={slide.imageAlt}
+                        fill
+                        priority={index === 0}
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 70vw, 45vw"
+                        className="object-cover object-center group-hover/card:scale-105 transition-transform duration-700"
+                      />
+
+                      {/* Subtle overlay shading for depth */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-slate-950/20 pointer-events-none" />
+
+                      {/* Overlaid Floating Specs Tag */}
+                      <div className="absolute bottom-3 left-3 sm:bottom-4 sm:left-4 z-10 flex items-center gap-2 px-3 py-1.5 rounded-xl bg-slate-900/80 border border-slate-700/80 backdrop-blur-md shadow-lg text-xs font-semibold text-slate-200">
+                        <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                        <span>{slide.tagText}</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          );
+        })}
       </div>
 
-      {/* Slide Content Container */}
-      <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 sm:py-24 lg:py-32 flex flex-col justify-between min-h-[480px] sm:min-h-[580px] lg:min-h-[640px]">
-        {/* Top Badges & Announcement */}
-        <div className="flex items-center gap-2 sm:gap-3 flex-wrap">
-          <div className="inline-flex items-center gap-2 px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-full bg-blue-600/30 border border-blue-400/40 text-blue-300 text-xs font-semibold backdrop-blur-md shadow-xs animate-fade-in-up">
-            <BadgeIcon className="w-3.5 h-3.5 text-blue-400" />
-            <span>{active.badge}</span>
-          </div>
+      {/* Side Floating Next & Previous Navigation Arrows */}
+      <button
+        type="button"
+        onClick={prevSlide}
+        aria-label="Previous slide"
+        className="hidden sm:flex absolute left-4 top-1/2 -translate-y-1/2 z-30 p-3 rounded-2xl bg-slate-900/80 hover:bg-blue-600 border border-slate-700 hover:border-blue-500 text-slate-300 hover:text-white backdrop-blur-md transition-all cursor-pointer shadow-lg hover:scale-105 active:scale-95"
+      >
+        <ChevronLeft className="w-5 h-5" />
+      </button>
 
-          <div className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-900/60 border border-slate-700/60 text-slate-300 text-xs backdrop-blur-md">
-            <Sparkles className="w-3.5 h-3.5 text-amber-400" />
-            <span>Aristo Computer Meherpur</span>
-          </div>
-        </div>
+      <button
+        type="button"
+        onClick={nextSlide}
+        aria-label="Next slide"
+        className="hidden sm:flex absolute right-4 top-1/2 -translate-y-1/2 z-30 p-3 rounded-2xl bg-slate-900/80 hover:bg-blue-600 border border-slate-700 hover:border-blue-500 text-slate-300 hover:text-white backdrop-blur-md transition-all cursor-pointer shadow-lg hover:scale-105 active:scale-95"
+      >
+        <ChevronRight className="w-5 h-5" />
+      </button>
 
-        {/* Center Headline & Actions */}
-        <div className="max-w-2xl sm:max-w-3xl my-auto py-4 sm:py-6 space-y-4 sm:space-y-6">
-          <h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-black tracking-tight text-white leading-tight">
-            <span className="text-transparent bg-clip-text bg-linear-to-r from-blue-400 via-sky-300 to-indigo-300">
-              {active.titleHighlight}
-            </span>{" "}
-            <span>{active.titleEnd}</span>
-          </h1>
-
-          <p className="text-xs sm:text-base md:text-lg text-slate-300 leading-relaxed font-light max-w-xl">
-            {active.description}
-          </p>
-
-          {/* Action Buttons */}
-          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 sm:gap-3 pt-2 w-full sm:w-auto">
-            <Link
-              href={active.primaryAction.href}
-              className="inline-flex items-center justify-center gap-2 px-5 sm:px-7 py-2.5 sm:py-3.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs sm:text-sm shadow-lg shadow-blue-600/30 hover:shadow-blue-500/50 hover:scale-102 active:scale-98 transition-all cursor-pointer w-full sm:w-auto text-center"
-            >
-              <span>{active.primaryAction.label}</span>
-              <ArrowRight className="w-4 h-4" />
-            </Link>
-
-            {active.secondaryAction && (
-              active.secondaryAction.isExternal ? (
-                <a
-                  href={active.secondaryAction.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={`inline-flex items-center justify-center gap-2 px-5 sm:px-7 py-2.5 sm:py-3.5 rounded-xl font-bold text-xs sm:text-sm shadow-md transition-all cursor-pointer w-full sm:w-auto text-center ${
-                    active.secondaryAction.isWhatsApp
-                      ? "bg-emerald-600 hover:bg-emerald-500 text-white shadow-emerald-600/20"
-                      : "bg-slate-800/80 hover:bg-slate-700 text-slate-200 border border-slate-700 backdrop-blur-md"
-                  }`}
-                >
-                  {active.secondaryAction.isWhatsApp && <MessageCircle className="w-4 h-4" />}
-                  <span>{active.secondaryAction.label}</span>
-                </a>
-              ) : (
-                <Link
-                  href={active.secondaryAction.href}
-                  className="inline-flex items-center justify-center gap-2 px-5 sm:px-7 py-2.5 sm:py-3.5 rounded-xl bg-slate-800/80 hover:bg-slate-700 text-slate-200 font-bold text-xs sm:text-sm border border-slate-700 backdrop-blur-md transition-all cursor-pointer w-full sm:w-auto text-center"
-                >
-                  <span>{active.secondaryAction.label}</span>
-                </Link>
-              )
-            )}
-          </div>
-        </div>
-
-        {/* Bottom Bar: Trust Badges & Slide Indicator Controls */}
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 sm:gap-6 pt-4 sm:pt-6 border-t border-slate-800/80">
+      {/* Bottom Bar: Trust Badges & Slide Indicator Controls */}
+      <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-8 pt-4">
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-4 border-t border-slate-800/80">
           {/* Trust Value Props */}
           <div className="grid grid-cols-2 sm:flex items-center gap-2.5 sm:gap-6 text-xs text-slate-400 font-medium w-full sm:w-auto">
             <div className="flex items-center gap-2">
@@ -345,15 +373,14 @@ export default function HeroSlideshow() {
             </div>
           </div>
 
-          {/* Dots Indicator & Navigation Controls */}
+          {/* Dots Indicator & Mobile Navigation Controls */}
           <div className="flex items-center justify-between sm:justify-end w-full sm:w-auto gap-3">
-            {/* Prev Button */}
+            {/* Mobile Prev Button */}
             <button
               type="button"
               onClick={prevSlide}
               aria-label="Previous slide"
-              title="Previous slide"
-              className="p-2.5 rounded-xl bg-slate-900/80 hover:bg-blue-600 border border-slate-700 hover:border-blue-500 text-slate-300 hover:text-white backdrop-blur-md transition-colors cursor-pointer"
+              className="sm:hidden p-2 rounded-xl bg-slate-900/80 hover:bg-blue-600 border border-slate-700 text-slate-300 hover:text-white cursor-pointer"
             >
               <ChevronLeft className="w-4 h-4" />
             </button>
@@ -375,13 +402,12 @@ export default function HeroSlideshow() {
               ))}
             </div>
 
-            {/* Next Button */}
+            {/* Mobile Next Button */}
             <button
               type="button"
               onClick={nextSlide}
               aria-label="Next slide"
-              title="Next slide"
-              className="p-2.5 rounded-xl bg-slate-900/80 hover:bg-blue-600 border border-slate-700 hover:border-blue-500 text-slate-300 hover:text-white backdrop-blur-md transition-colors cursor-pointer"
+              className="sm:hidden p-2 rounded-xl bg-slate-900/80 hover:bg-blue-600 border border-slate-700 text-slate-300 hover:text-white cursor-pointer"
             >
               <ChevronRight className="w-4 h-4" />
             </button>
