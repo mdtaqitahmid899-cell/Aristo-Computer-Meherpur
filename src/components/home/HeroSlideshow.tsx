@@ -228,15 +228,42 @@ export default function HeroSlideshow() {
           return (
             <div
               key={slide.id}
-              className="min-w-full w-full shrink-0 relative flex flex-col justify-between py-10 sm:py-16 lg:py-20 px-4 sm:px-6 lg:px-8 min-h-[520px] sm:min-h-[560px] lg:min-h-[600px]"
+              className="min-w-full w-full shrink-0 relative flex flex-col justify-between py-8 sm:py-14 lg:py-20 px-4 sm:px-6 lg:px-8 min-h-[520px] sm:min-h-[560px] lg:min-h-[600px]"
             >
               <div className="max-w-7xl mx-auto w-full my-auto">
-                {/* Side-by-Side Grid: Text on Left, Product Imagery on Right */}
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-                  {/* Left Column: Headlines & Actions */}
-                  <div className="lg:col-span-7 space-y-4 sm:space-y-6">
+                {/* Mobile & Tablet: Image on Top, Text on Bottom. Desktop: Text on Left, Image on Right */}
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 lg:gap-12 items-center">
+                  {/* Image Column: order-1 on mobile/tablet (TOP), order-2 on desktop (RIGHT) */}
+                  <div className="order-1 lg:order-2 lg:col-span-5 flex items-center justify-center relative">
+                    {/* Glowing backlight */}
+                    <div className="absolute w-56 h-56 sm:w-80 sm:h-80 bg-blue-500/20 rounded-full blur-3xl pointer-events-none" />
+
+                    {/* Image Card Container */}
+                    <div className="relative w-full max-w-sm sm:max-w-md lg:max-w-none aspect-16/10 sm:aspect-16/9 lg:aspect-4/3 rounded-2xl sm:rounded-3xl overflow-hidden border border-slate-800/80 shadow-2xl bg-slate-900/60 group/card mx-auto">
+                      <Image
+                        src={slide.imageUrl}
+                        alt={slide.imageAlt}
+                        fill
+                        priority={index === 0}
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 70vw, 45vw"
+                        className="object-cover object-center group-hover/card:scale-105 transition-transform duration-700"
+                      />
+
+                      {/* Subtle overlay shading for depth */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-slate-950/20 pointer-events-none" />
+
+                      {/* Overlaid Floating Specs Tag */}
+                      <div className="absolute bottom-2.5 left-2.5 sm:bottom-4 sm:left-4 z-10 flex items-center gap-2 px-3 py-1 sm:py-1.5 rounded-xl bg-slate-900/80 border border-slate-700/80 backdrop-blur-md shadow-lg text-[11px] sm:text-xs font-semibold text-slate-200">
+                        <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                        <span>{slide.tagText}</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Text Column: order-2 on mobile/tablet (BOTTOM), order-1 on desktop (LEFT) */}
+                  <div className="order-2 lg:order-1 lg:col-span-7 space-y-3.5 sm:space-y-6">
                     {/* Top Badges */}
-                    <div className="flex items-center gap-2 sm:gap-3 flex-wrap">
+                    <div className="flex items-center justify-center sm:justify-start gap-2 sm:gap-3 flex-wrap">
                       <div className="inline-flex items-center gap-2 px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-full bg-blue-600/30 border border-blue-400/40 text-blue-300 text-xs font-semibold backdrop-blur-md shadow-xs">
                         <BadgeIcon className="w-3.5 h-3.5 text-blue-400" />
                         <span>{slide.badge}</span>
@@ -249,7 +276,7 @@ export default function HeroSlideshow() {
                     </div>
 
                     {/* Headline */}
-                    <h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-black tracking-tight text-white leading-tight">
+                    <h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-black tracking-tight text-white leading-tight text-center sm:text-left">
                       <span className="text-transparent bg-clip-text bg-linear-to-r from-blue-400 via-sky-300 to-indigo-300">
                         {slide.titleHighlight}
                       </span>{" "}
@@ -257,12 +284,12 @@ export default function HeroSlideshow() {
                     </h1>
 
                     {/* Subtitle / Description */}
-                    <p className="text-xs sm:text-base text-slate-300 leading-relaxed font-light max-w-xl">
+                    <p className="text-xs sm:text-base text-slate-300 leading-relaxed font-light max-w-xl mx-auto sm:mx-0 text-center sm:text-left">
                       {slide.description}
                     </p>
 
                     {/* Action Buttons */}
-                    <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 sm:gap-3 pt-2 w-full sm:w-auto">
+                    <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center sm:justify-start gap-2.5 sm:gap-3 pt-2 w-full sm:w-auto">
                       <Link
                         href={slide.primaryAction.href}
                         className="inline-flex items-center justify-center gap-2 px-5 sm:px-7 py-2.5 sm:py-3.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs sm:text-sm shadow-lg shadow-blue-600/30 hover:shadow-blue-500/50 hover:scale-102 active:scale-98 transition-all cursor-pointer w-full sm:w-auto text-center"
@@ -295,33 +322,6 @@ export default function HeroSlideshow() {
                           </Link>
                         )
                       )}
-                    </div>
-                  </div>
-
-                  {/* Right Column: Hardware Showcase Imagery (Side-by-Side Presentation) */}
-                  <div className="lg:col-span-5 flex items-center justify-center relative">
-                    {/* Glowing backlight */}
-                    <div className="absolute w-64 h-64 sm:w-80 sm:h-80 bg-blue-500/20 rounded-full blur-3xl pointer-events-none" />
-
-                    {/* Image Card Container */}
-                    <div className="relative w-full max-w-md sm:max-w-lg lg:max-w-none aspect-16/10 sm:aspect-16/9 lg:aspect-4/3 rounded-2xl sm:rounded-3xl overflow-hidden border border-slate-800/80 shadow-2xl bg-slate-900/60 group/card">
-                      <Image
-                        src={slide.imageUrl}
-                        alt={slide.imageAlt}
-                        fill
-                        priority={index === 0}
-                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 70vw, 45vw"
-                        className="object-cover object-center group-hover/card:scale-105 transition-transform duration-700"
-                      />
-
-                      {/* Subtle overlay shading for depth */}
-                      <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-slate-950/20 pointer-events-none" />
-
-                      {/* Overlaid Floating Specs Tag */}
-                      <div className="absolute bottom-3 left-3 sm:bottom-4 sm:left-4 z-10 flex items-center gap-2 px-3 py-1.5 rounded-xl bg-slate-900/80 border border-slate-700/80 backdrop-blur-md shadow-lg text-xs font-semibold text-slate-200">
-                        <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                        <span>{slide.tagText}</span>
-                      </div>
                     </div>
                   </div>
                 </div>
