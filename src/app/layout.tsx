@@ -43,6 +43,9 @@ export const metadata: Metadata = {
     "Computer Accessories Meherpur",
   ],
   authors: [{ name: "Aristo Computer" }],
+  verification: {
+    google: "HD4FCnd5mIgNlvvQ-0EbhpKO13Y09M6YTeNcK0aOlQs",
+  },
   icons: {
     icon: [
       { url: "/favicon.ico", sizes: "any" },
