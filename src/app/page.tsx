@@ -4,7 +4,6 @@ import { ArrowRight, Sparkles, Clock, Package, MessageCircle, Phone } from "luci
 import HeroSlideshow from "@/components/home/HeroSlideshow";
 import ServicesBanner from "@/components/home/ServicesBanner";
 import CategorySection from "@/components/home/CategorySection";
-import SpecialOffersSection from "@/components/home/SpecialOffersSection";
 import WhyChooseUs from "@/components/home/WhyChooseUs";
 import CameraSetupPreview from "@/components/home/CameraSetupPreview";
 import LocationContactSection from "@/components/home/LocationContactSection";
@@ -77,12 +76,7 @@ export default async function HomePage() {
         </section>
       )}
 
-      {/* 4. Special Offers Promotional Banner */}
-      <ScrollReveal>
-        <SpecialOffersSection />
-      </ScrollReveal>
-
-      {/* 5. Latest Arrivals Section */}
+      {/* 4. Latest Arrivals Section */}
       <section className="py-16 sm:py-20 bg-slate-50 dark:bg-[#090d16] border-b border-slate-200 dark:border-slate-800 transition-colors duration-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <ScrollReveal>

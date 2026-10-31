@@ -259,16 +259,6 @@ export default function Navbar() {
                 <span className="hidden lg:inline xl:hidden">{isBangla ? "ক্যামেরা" : "Camera"}</span>
               </Link>
 
-              {/* Offers Link */}
-              <Link
-                href="/products?featured=true"
-                className="flex items-center gap-1 text-amber-600 dark:text-amber-400 hover:text-amber-700 dark:hover:text-amber-300 transition-colors px-1.5 py-1.5 xl:px-2 font-bold"
-              >
-                <Sparkles className="w-3.5 h-3.5 text-amber-500 shrink-0" />
-                <span className="lg:hidden xl:inline">{t.nav.offers}</span>
-                <span className="hidden lg:inline xl:hidden">{isBangla ? "অফার" : "Offers"}</span>
-              </Link>
-
               {/* Contact Link */}
               <Link
                 href="/contact"

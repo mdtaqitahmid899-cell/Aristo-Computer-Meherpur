@@ -80,7 +80,7 @@ const SLIDES: SlideData[] = [
       href: "/products?category=Laptops",
     },
     secondaryAction: {
-      label: "Special Offers",
+      label: "Featured Laptops",
       href: "/products?featured=true",
     },
     imageUrl: "/images/hero/hero-laptop.jpg",
