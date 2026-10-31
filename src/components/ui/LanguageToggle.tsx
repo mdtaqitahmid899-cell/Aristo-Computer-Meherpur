@@ -48,7 +48,7 @@ export default function LanguageToggle({
     <button
       type="button"
       onClick={toggleLanguage}
-      className={`group relative flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl border border-slate-200 dark:border-slate-700/80 bg-white dark:bg-slate-800/80 hover:bg-slate-100 dark:hover:bg-slate-750 text-slate-700 dark:text-slate-200 text-xs font-bold transition-all shadow-xs hover:border-blue-500/50 cursor-pointer ${className}`}
+      className={`group relative flex items-center gap-1.5 px-2 xl:px-2.5 py-1.5 rounded-xl border border-slate-200 dark:border-slate-700/80 bg-white dark:bg-slate-800/80 hover:bg-slate-100 dark:hover:bg-slate-750 text-slate-700 dark:text-slate-200 text-xs font-bold transition-all shadow-xs hover:border-blue-500/50 cursor-pointer ${className}`}
       title={isBangla ? "Switch to English" : "বাংলায় পরিবর্তন করুন (Switch to Bangla)"}
       aria-label="Toggle language"
     >

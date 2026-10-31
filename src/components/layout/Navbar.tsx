@@ -149,36 +149,36 @@ export default function Navbar() {
     <>
       {/* Main Top Header */}
       <header className="sticky top-0 z-50 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 shadow-xs transition-colors duration-200">
-        <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16 sm:h-18 lg:h-20 gap-2 sm:gap-4 relative">
+        <div className="max-w-7xl mx-auto px-3 sm:px-4 lg:px-5 xl:px-8">
+          <div className="flex items-center justify-between h-16 sm:h-18 lg:h-20 gap-1.5 sm:gap-2.5 xl:gap-4 relative w-full">
             {/* Logo */}
             <Link
               href="/"
-              className="flex items-center gap-2 sm:gap-3 shrink-0 group min-w-0"
+              className="flex items-center gap-2 sm:gap-2.5 xl:gap-3 shrink-0 group min-w-0"
               title="Aristo Computer Meherpur"
             >
-              <Logo variant="badge" size="sm" className="sm:hidden shrink-0" />
-              <Logo variant="badge" size="md" className="hidden sm:flex shrink-0" />
+              <Logo variant="badge" size="sm" className="xl:hidden shrink-0" />
+              <Logo variant="badge" size="md" className="hidden xl:flex shrink-0" />
               <div className="min-w-0">
                 <div className="flex items-center gap-1">
-                  <span className="text-base sm:text-lg lg:text-xl font-black tracking-tight text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                  <span className="text-base sm:text-lg xl:text-xl font-black tracking-tight text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
                     ARISTO
                   </span>
-                  <span className="text-base sm:text-lg lg:text-xl font-bold tracking-tight text-blue-600 dark:text-blue-400">
+                  <span className="text-base sm:text-lg xl:text-xl font-bold tracking-tight text-blue-600 dark:text-blue-400">
                     COMPUTER
                   </span>
                 </div>
-                <p className="text-[9px] sm:text-[10px] lg:text-[11px] font-medium tracking-wide text-slate-500 dark:text-slate-400 truncate max-w-[130px] sm:max-w-none">
+                <p className="hidden sm:block lg:hidden xl:block text-[9px] sm:text-[10px] xl:text-[11px] font-medium tracking-wide text-slate-500 dark:text-slate-400 truncate max-w-[130px] sm:max-w-none">
                   {isBangla ? "হোটেল বাজার, মেহেরপুর" : "Hotel Bazar, Meherpur"}
                 </p>
               </div>
             </Link>
 
             {/* Desktop Navigation Links - Full Width & Beautifully Spaced */}
-            <nav className="hidden lg:flex items-center gap-2 xl:gap-3.5 text-xs xl:text-sm font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">
+            <nav className="hidden lg:flex items-center gap-1 xl:gap-2 2xl:gap-3 text-xs xl:text-sm font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">
               <Link
                 href="/"
-                className={`px-2.5 py-1.5 rounded-xl transition-colors ${
+                className={`px-2 py-1.5 xl:px-2.5 rounded-xl transition-colors ${
                   isActive("/")
                     ? "text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-950/60 font-bold"
                     : "hover:text-blue-600 dark:hover:text-blue-400 hover:bg-slate-50 dark:hover:bg-slate-800"
@@ -189,7 +189,7 @@ export default function Navbar() {
 
               <Link
                 href="/products"
-                className={`px-2.5 py-1.5 rounded-xl transition-colors ${
+                className={`px-2 py-1.5 xl:px-2.5 rounded-xl transition-colors ${
                   pathname === "/products"
                     ? "text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-950/60 font-bold"
                     : "hover:text-blue-600 dark:hover:text-blue-400 hover:bg-slate-50 dark:hover:bg-slate-800"
@@ -206,7 +206,7 @@ export default function Navbar() {
               >
                 <button
                   type="button"
-                  className="flex items-center gap-1 px-2.5 py-1.5 rounded-xl hover:text-blue-600 dark:hover:text-blue-400 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors cursor-pointer"
+                  className="flex items-center gap-1 px-2 py-1.5 xl:px-2.5 rounded-xl hover:text-blue-600 dark:hover:text-blue-400 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors cursor-pointer"
                   onClick={() => setCategoriesOpen(!categoriesOpen)}
                 >
                   <span>{t.nav.categories}</span>
@@ -235,7 +235,7 @@ export default function Navbar() {
               {/* PC Builder Pill */}
               <Link
                 href="/pc-builder"
-                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full border transition-all ${
+                className={`flex items-center gap-1.5 px-2.5 py-1 xl:px-3 xl:py-1.5 rounded-full border transition-all ${
                   isActive("/pc-builder")
                     ? "bg-blue-600 text-white border-blue-600 shadow-xs"
                     : "bg-blue-50 dark:bg-blue-950/60 text-blue-700 dark:text-blue-300 hover:bg-blue-100 dark:hover:bg-blue-900/60 border-blue-200 dark:border-blue-800/80"
@@ -248,29 +248,31 @@ export default function Navbar() {
               {/* Camera Setup Pill */}
               <Link
                 href="/camera-setup"
-                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full border transition-all ${
+                className={`flex items-center gap-1.5 px-2.5 py-1 xl:px-3 xl:py-1.5 rounded-full border transition-all ${
                   isActive("/camera-setup")
                     ? "bg-indigo-600 text-white border-indigo-600 shadow-xs"
                     : "bg-indigo-50 dark:bg-indigo-950/60 text-indigo-700 dark:text-indigo-300 hover:bg-indigo-100 dark:hover:bg-indigo-900/60 border-indigo-200 dark:border-indigo-800/80"
                 }`}
               >
                 <Camera className="w-3.5 h-3.5 shrink-0" />
-                <span>{t.nav.cameraSetup}</span>
+                <span className="lg:hidden xl:inline">{t.nav.cameraSetup}</span>
+                <span className="hidden lg:inline xl:hidden">{isBangla ? "ক্যামেরা" : "Camera"}</span>
               </Link>
 
               {/* Offers Link */}
               <Link
                 href="/products?featured=true"
-                className="flex items-center gap-1 text-amber-600 dark:text-amber-400 hover:text-amber-700 dark:hover:text-amber-300 transition-colors px-2 py-1.5 font-bold"
+                className="flex items-center gap-1 text-amber-600 dark:text-amber-400 hover:text-amber-700 dark:hover:text-amber-300 transition-colors px-1.5 py-1.5 xl:px-2 font-bold"
               >
                 <Sparkles className="w-3.5 h-3.5 text-amber-500 shrink-0" />
-                <span>{t.nav.offers}</span>
+                <span className="lg:hidden xl:inline">{t.nav.offers}</span>
+                <span className="hidden lg:inline xl:hidden">{isBangla ? "অফার" : "Offers"}</span>
               </Link>
 
               {/* Contact Link */}
               <Link
                 href="/contact"
-                className={`px-2.5 py-1.5 rounded-xl transition-colors ${
+                className={`px-2 py-1.5 xl:px-2.5 rounded-xl transition-colors ${
                   isActive("/contact")
                     ? "text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-950/60 font-bold"
                     : "hover:text-blue-600 dark:hover:text-blue-400 hover:bg-slate-50 dark:hover:bg-slate-800"
@@ -281,17 +283,17 @@ export default function Navbar() {
             </nav>
 
             {/* Right Action Icons & Toggle Buttons */}
-            <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
+            <div className="flex items-center gap-1 sm:gap-1.5 xl:gap-2 shrink-0">
               {/* Search Toggle Button */}
               <button
                 type="button"
                 onClick={() => setSearchOpen(true)}
-                className="flex items-center gap-1.5 px-2.5 sm:px-3 py-2 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-blue-50 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 hover:text-blue-600 dark:hover:text-blue-400 text-xs font-semibold transition-colors cursor-pointer"
+                className="flex items-center gap-1.5 p-2 xl:px-3 xl:py-2 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-blue-50 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 hover:text-blue-600 dark:hover:text-blue-400 text-xs font-semibold transition-colors cursor-pointer"
                 title="Search products"
                 aria-label="Open search bar"
               >
                 <Search className="w-4 h-4 shrink-0" />
-                <span className="hidden sm:inline">Search</span>
+                <span className="hidden xl:inline">Search</span>
               </button>
 
               {/* Language Switcher - on tablets/desktop */}
@@ -301,13 +303,13 @@ export default function Navbar() {
 
               {/* Dark/Light Theme Toggle - on tablets/desktop */}
               <div className="hidden sm:block">
-                <ThemeToggle />
+                <ThemeToggle showDropdown={false} />
               </div>
 
               {/* Wishlist Link - on tablets/desktop */}
               <Link
                 href="/wishlist"
-                className={`hidden sm:flex relative p-2 rounded-xl transition-colors ${
+                className={`hidden sm:flex relative p-2 xl:p-2.5 rounded-xl transition-colors ${
                   isActive("/wishlist")
                     ? "bg-rose-50 dark:bg-rose-950/60 text-rose-600 dark:text-rose-400"
                     : "text-slate-600 dark:text-slate-300 hover:text-rose-600 dark:hover:text-rose-400 hover:bg-rose-50 dark:hover:bg-slate-800"
@@ -325,7 +327,7 @@ export default function Navbar() {
               {/* Cart Link with Live Count */}
               <Link
                 href="/cart"
-                className={`relative flex items-center gap-1.5 px-2.5 sm:px-3 py-2 rounded-xl transition-colors shrink-0 ${
+                className={`relative flex items-center gap-1.5 p-2 sm:px-2.5 xl:px-3 py-2 rounded-xl transition-colors shrink-0 ${
                   isActive("/cart")
                     ? "bg-blue-600 text-white shadow-xs"
                     : "bg-slate-100 dark:bg-slate-800 hover:bg-blue-50 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-100 hover:text-blue-600 dark:hover:text-blue-400"
