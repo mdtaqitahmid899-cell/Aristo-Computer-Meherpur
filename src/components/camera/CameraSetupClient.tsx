@@ -98,8 +98,8 @@ export default function CameraSetupClient() {
   return (
     <div className="flex flex-col min-h-screen bg-slate-50 dark:bg-[#090d16] text-slate-900 dark:text-slate-100 transition-colors">
       {/* 1. Hero Banner */}
-      <section className="relative overflow-hidden bg-slate-950 text-white py-16 sm:py-24 border-b border-slate-800">
-        <div className="absolute inset-0 bg-radial from-indigo-950/60 via-slate-950/90 to-slate-950 pointer-events-none" />
+      <section className="relative overflow-hidden bg-gradient-to-b from-indigo-50/50 via-white to-slate-50 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950 text-slate-900 dark:text-white py-16 sm:py-24 border-b border-slate-200 dark:border-slate-800 transition-colors duration-200">
+        <div className="absolute inset-0 bg-radial from-indigo-500/5 dark:from-indigo-950/60 via-transparent dark:via-slate-950/90 to-transparent dark:to-slate-950 pointer-events-none" />
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl pointer-events-none" />
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6">
@@ -108,11 +108,11 @@ export default function CameraSetupClient() {
             <span>{c.badge}</span>
           </div>
 
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black tracking-tight text-white max-w-4xl mx-auto leading-tight">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black tracking-tight text-slate-900 dark:text-white max-w-4xl mx-auto leading-tight">
             {c.headline}
           </h1>
 
-          <p className="text-sm sm:text-base md:text-lg text-slate-300 max-w-3xl mx-auto font-light leading-relaxed">
+          <p className="text-sm sm:text-base md:text-lg text-slate-600 dark:text-slate-300 max-w-3xl mx-auto font-light leading-relaxed">
             {c.subtitle}
           </p>
 

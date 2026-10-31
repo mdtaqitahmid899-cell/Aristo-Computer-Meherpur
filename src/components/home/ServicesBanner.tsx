@@ -70,7 +70,7 @@ export default function ServicesBanner() {
     <section className="py-10 bg-slate-100/60 dark:bg-slate-900/40 border-b border-slate-200 dark:border-slate-800/80 transition-colors">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
         {/* Main Service Highlight Card */}
-        <div className="relative overflow-hidden rounded-3xl bg-linear-to-r from-blue-900 via-slate-900 to-indigo-950 text-white p-6 sm:p-8 md:p-10 shadow-xl border border-blue-800/40">
+        <div className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-blue-700 via-indigo-700 to-blue-800 dark:from-blue-900 dark:via-slate-900 dark:to-indigo-950 text-white p-6 sm:p-8 md:p-10 shadow-xl border border-blue-600/30 dark:border-blue-800/40 transition-colors duration-200">
           {/* Subtle background glow */}
           <div className="absolute -right-20 -top-20 w-80 h-80 bg-blue-500/10 rounded-full blur-3xl pointer-events-none" />
           <div className="absolute -left-20 -bottom-20 w-80 h-80 bg-indigo-500/10 rounded-full blur-3xl pointer-events-none" />
@@ -118,7 +118,7 @@ export default function ServicesBanner() {
 
               <a
                 href={`tel:${SHOP_CONFIG.phone}`}
-                className="inline-flex items-center justify-center gap-2 px-4 sm:px-5 py-2 sm:py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 hover:text-white font-semibold text-xs border border-slate-700 transition-all cursor-pointer text-center"
+                className="inline-flex items-center justify-center gap-2 px-4 sm:px-5 py-2 sm:py-2.5 rounded-xl bg-white/10 hover:bg-white/20 text-white dark:bg-slate-800 dark:hover:bg-slate-700 dark:text-slate-200 dark:hover:text-white font-semibold text-xs border border-white/20 dark:border-slate-700 transition-all cursor-pointer text-center"
               >
                 <Phone className="w-4 h-4 text-blue-400 shrink-0" />
                 <span>{t.common.callNow}</span>

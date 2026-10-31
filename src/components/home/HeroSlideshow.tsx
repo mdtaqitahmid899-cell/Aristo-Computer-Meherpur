@@ -205,7 +205,7 @@ export default function HeroSlideshow() {
 
   return (
     <div
-      className="relative overflow-hidden bg-slate-950 text-white select-none group"
+      className="relative overflow-hidden bg-gradient-to-b from-slate-100 via-white to-slate-100 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950 text-slate-900 dark:text-white select-none group transition-colors duration-300"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
       onTouchStart={handleTouchStart}
@@ -214,8 +214,8 @@ export default function HeroSlideshow() {
       aria-label="Computer hardware promotions and featured gear"
     >
       {/* Background ambient lighting */}
-      <div className="absolute -top-32 -left-32 w-96 h-96 bg-blue-600/15 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute -bottom-32 -right-32 w-96 h-96 bg-indigo-600/15 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute -top-32 -left-32 w-96 h-96 bg-blue-500/10 dark:bg-blue-600/15 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute -bottom-32 -right-32 w-96 h-96 bg-indigo-500/10 dark:bg-indigo-600/15 rounded-full blur-3xl pointer-events-none" />
 
       {/* Horizontal Side-by-Side Sliding Track */}
       <div
@@ -239,7 +239,7 @@ export default function HeroSlideshow() {
                     <div className="absolute w-56 h-56 sm:w-80 sm:h-80 bg-blue-500/20 rounded-full blur-3xl pointer-events-none" />
 
                     {/* Image Card Container */}
-                    <div className="relative w-full max-w-sm sm:max-w-md lg:max-w-none aspect-16/10 sm:aspect-16/9 lg:aspect-4/3 rounded-2xl sm:rounded-3xl overflow-hidden border border-slate-800/80 shadow-2xl bg-slate-900/60 group/card mx-auto">
+                    <div className="relative w-full max-w-sm sm:max-w-md lg:max-w-none aspect-16/10 sm:aspect-16/9 lg:aspect-4/3 rounded-2xl sm:rounded-3xl overflow-hidden border border-slate-200 dark:border-slate-800/80 shadow-2xl bg-white dark:bg-slate-900/60 group/card mx-auto transition-colors">
                       <Image
                         src={slide.imageUrl}
                         alt={slide.imageAlt}
@@ -250,10 +250,10 @@ export default function HeroSlideshow() {
                       />
 
                       {/* Subtle overlay shading for depth */}
-                      <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-slate-950/20 pointer-events-none" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-slate-900/40 via-transparent to-transparent dark:from-slate-950/80 dark:via-transparent dark:to-slate-950/20 pointer-events-none" />
 
                       {/* Overlaid Floating Specs Tag */}
-                      <div className="absolute bottom-2.5 left-2.5 sm:bottom-4 sm:left-4 z-10 flex items-center gap-2 px-3 py-1 sm:py-1.5 rounded-xl bg-slate-900/80 border border-slate-700/80 backdrop-blur-md shadow-lg text-[11px] sm:text-xs font-semibold text-slate-200">
+                      <div className="absolute bottom-2.5 left-2.5 sm:bottom-4 sm:left-4 z-10 flex items-center gap-2 px-3 py-1 sm:py-1.5 rounded-xl bg-white/95 dark:bg-slate-900/80 border border-slate-200 dark:border-slate-700/80 backdrop-blur-md shadow-lg text-[11px] sm:text-xs font-semibold text-slate-800 dark:text-slate-200 transition-colors">
                         <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
                         <span>{slide.tagText}</span>
                       </div>
@@ -264,27 +264,27 @@ export default function HeroSlideshow() {
                   <div className="order-2 lg:order-1 lg:col-span-7 space-y-3.5 sm:space-y-6">
                     {/* Top Badges */}
                     <div className="flex items-center justify-center sm:justify-start gap-2 sm:gap-3 flex-wrap">
-                      <div className="inline-flex items-center gap-2 px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-full bg-blue-600/30 border border-blue-400/40 text-blue-300 text-xs font-semibold backdrop-blur-md shadow-xs">
-                        <BadgeIcon className="w-3.5 h-3.5 text-blue-400" />
+                      <div className="inline-flex items-center gap-2 px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-full bg-blue-500/10 dark:bg-blue-600/30 border border-blue-500/20 dark:border-blue-400/40 text-blue-700 dark:text-blue-300 text-xs font-semibold backdrop-blur-md shadow-xs transition-colors">
+                        <BadgeIcon className="w-3.5 h-3.5 text-blue-600 dark:text-blue-400" />
                         <span>{slide.badge}</span>
                       </div>
 
-                      <div className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-900/60 border border-slate-700/60 text-slate-300 text-xs backdrop-blur-md">
-                        <Sparkles className="w-3.5 h-3.5 text-amber-400" />
+                      <div className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/80 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-700/60 text-slate-700 dark:text-slate-300 text-xs backdrop-blur-md transition-colors">
+                        <Sparkles className="w-3.5 h-3.5 text-amber-500 dark:text-amber-400" />
                         <span>Aristo Computer Meherpur</span>
                       </div>
                     </div>
 
                     {/* Headline */}
-                    <h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-black tracking-tight text-white leading-tight text-center sm:text-left">
-                      <span className="text-transparent bg-clip-text bg-linear-to-r from-blue-400 via-sky-300 to-indigo-300">
+                    <h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-black tracking-tight text-slate-900 dark:text-white leading-tight text-center sm:text-left">
+                      <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-indigo-600 to-sky-500 dark:from-blue-400 dark:via-sky-300 dark:to-indigo-300">
                         {slide.titleHighlight}
                       </span>{" "}
                       <span>{slide.titleEnd}</span>
                     </h1>
 
                     {/* Subtitle / Description */}
-                    <p className="text-xs sm:text-base text-slate-300 leading-relaxed font-light max-w-xl mx-auto sm:mx-0 text-center sm:text-left">
+                    <p className="text-xs sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed font-light max-w-xl mx-auto sm:mx-0 text-center sm:text-left">
                       {slide.description}
                     </p>
 
@@ -307,7 +307,7 @@ export default function HeroSlideshow() {
                             className={`inline-flex items-center justify-center gap-2 px-5 sm:px-7 py-2.5 sm:py-3.5 rounded-xl font-bold text-xs sm:text-sm shadow-md transition-all cursor-pointer w-full sm:w-auto text-center ${
                               slide.secondaryAction.isWhatsApp
                                 ? "bg-emerald-600 hover:bg-emerald-500 text-white shadow-emerald-600/20"
-                                : "bg-slate-800/80 hover:bg-slate-700 text-slate-200 border border-slate-700 backdrop-blur-md"
+                                : "bg-white hover:bg-slate-100 text-slate-800 border border-slate-200 dark:bg-slate-800/80 dark:hover:bg-slate-700 dark:text-slate-200 dark:border-slate-700 backdrop-blur-md"
                             }`}
                           >
                             {slide.secondaryAction.isWhatsApp && <MessageCircle className="w-4 h-4" />}
@@ -316,7 +316,7 @@ export default function HeroSlideshow() {
                         ) : (
                           <Link
                             href={slide.secondaryAction.href}
-                            className="inline-flex items-center justify-center gap-2 px-5 sm:px-7 py-2.5 sm:py-3.5 rounded-xl bg-slate-800/80 hover:bg-slate-700 text-slate-200 font-bold text-xs sm:text-sm border border-slate-700 backdrop-blur-md transition-all cursor-pointer w-full sm:w-auto text-center"
+                            className="inline-flex items-center justify-center gap-2 px-5 sm:px-7 py-2.5 sm:py-3.5 rounded-xl bg-white hover:bg-slate-100 text-slate-800 border border-slate-200 dark:bg-slate-800/80 dark:hover:bg-slate-700 dark:text-slate-200 dark:border-slate-700 font-bold text-xs sm:text-sm backdrop-blur-md transition-all cursor-pointer w-full sm:w-auto text-center shadow-xs"
                           >
                             <span>{slide.secondaryAction.label}</span>
                           </Link>
@@ -336,7 +336,7 @@ export default function HeroSlideshow() {
         type="button"
         onClick={prevSlide}
         aria-label="Previous slide"
-        className="hidden sm:flex absolute left-4 top-1/2 -translate-y-1/2 z-30 p-3 rounded-2xl bg-slate-900/80 hover:bg-blue-600 border border-slate-700 hover:border-blue-500 text-slate-300 hover:text-white backdrop-blur-md transition-all cursor-pointer shadow-lg hover:scale-105 active:scale-95"
+        className="hidden sm:flex absolute left-4 top-1/2 -translate-y-1/2 z-30 p-3 rounded-2xl bg-white/90 hover:bg-blue-600 border border-slate-200 hover:border-blue-500 text-slate-700 hover:text-white dark:bg-slate-900/80 dark:hover:bg-blue-600 dark:border-slate-700 dark:hover:border-blue-500 dark:text-slate-300 dark:hover:text-white backdrop-blur-md transition-all cursor-pointer shadow-lg hover:scale-105 active:scale-95"
       >
         <ChevronLeft className="w-5 h-5" />
       </button>
@@ -345,30 +345,30 @@ export default function HeroSlideshow() {
         type="button"
         onClick={nextSlide}
         aria-label="Next slide"
-        className="hidden sm:flex absolute right-4 top-1/2 -translate-y-1/2 z-30 p-3 rounded-2xl bg-slate-900/80 hover:bg-blue-600 border border-slate-700 hover:border-blue-500 text-slate-300 hover:text-white backdrop-blur-md transition-all cursor-pointer shadow-lg hover:scale-105 active:scale-95"
+        className="hidden sm:flex absolute right-4 top-1/2 -translate-y-1/2 z-30 p-3 rounded-2xl bg-white/90 hover:bg-blue-600 border border-slate-200 hover:border-blue-500 text-slate-700 hover:text-white dark:bg-slate-900/80 dark:hover:bg-blue-600 dark:border-slate-700 dark:hover:border-blue-500 dark:text-slate-300 dark:hover:text-white backdrop-blur-md transition-all cursor-pointer shadow-lg hover:scale-105 active:scale-95"
       >
         <ChevronRight className="w-5 h-5" />
       </button>
 
       {/* Bottom Bar: Trust Badges & Slide Indicator Controls */}
       <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-8 pt-4">
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-4 border-t border-slate-800/80">
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-4 border-t border-slate-200 dark:border-slate-800/80">
           {/* Trust Value Props */}
-          <div className="grid grid-cols-2 sm:flex items-center gap-2.5 sm:gap-6 text-xs text-slate-400 font-medium w-full sm:w-auto">
+          <div className="grid grid-cols-2 sm:flex items-center gap-2.5 sm:gap-6 text-xs text-slate-600 dark:text-slate-400 font-medium w-full sm:w-auto">
             <div className="flex items-center gap-2">
-              <ShieldCheck className="w-4 h-4 text-blue-400 shrink-0" />
+              <ShieldCheck className="w-4 h-4 text-blue-500 dark:text-blue-400 shrink-0" />
               <span>100% Genuine</span>
             </div>
             <div className="flex items-center gap-2">
-              <Zap className="w-4 h-4 text-amber-400 shrink-0" />
+              <Zap className="w-4 h-4 text-amber-500 dark:text-amber-400 shrink-0" />
               <span>Official Warranty</span>
             </div>
             <div className="flex items-center gap-2">
-              <Truck className="w-4 h-4 text-emerald-400 shrink-0" />
+              <Truck className="w-4 h-4 text-emerald-500 dark:text-emerald-400 shrink-0" />
               <span>Meherpur Delivery</span>
             </div>
             <div className="flex items-center gap-2">
-              <Layers className="w-4 h-4 text-sky-400 shrink-0" />
+              <Layers className="w-4 h-4 text-sky-500 dark:text-sky-400 shrink-0" />
               <span>Local Service</span>
             </div>
           </div>
@@ -380,7 +380,7 @@ export default function HeroSlideshow() {
               type="button"
               onClick={prevSlide}
               aria-label="Previous slide"
-              className="sm:hidden p-2 rounded-xl bg-slate-900/80 hover:bg-blue-600 border border-slate-700 text-slate-300 hover:text-white cursor-pointer"
+              className="sm:hidden p-2 rounded-xl bg-white/90 hover:bg-blue-600 border border-slate-200 text-slate-700 hover:text-white dark:bg-slate-900/80 dark:hover:bg-blue-600 dark:border-slate-700 dark:text-slate-300 dark:hover:text-white cursor-pointer transition-colors"
             >
               <ChevronLeft className="w-4 h-4" />
             </button>
@@ -395,8 +395,8 @@ export default function HeroSlideshow() {
                   aria-label={`Go to slide ${index + 1}`}
                   className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
                     index === currentSlide
-                      ? "w-8 bg-blue-500 shadow-sm shadow-blue-500/50"
-                      : "w-2 bg-slate-700 hover:bg-slate-500"
+                      ? "w-8 bg-blue-600 dark:bg-blue-500 shadow-sm shadow-blue-500/50"
+                      : "w-2 bg-slate-300 hover:bg-slate-400 dark:bg-slate-700 dark:hover:bg-slate-500"
                   }`}
                 />
               ))}
@@ -407,7 +407,7 @@ export default function HeroSlideshow() {
               type="button"
               onClick={nextSlide}
               aria-label="Next slide"
-              className="sm:hidden p-2 rounded-xl bg-slate-900/80 hover:bg-blue-600 border border-slate-700 text-slate-300 hover:text-white cursor-pointer"
+              className="sm:hidden p-2 rounded-xl bg-white/90 hover:bg-blue-600 border border-slate-200 text-slate-700 hover:text-white dark:bg-slate-900/80 dark:hover:bg-blue-600 dark:border-slate-700 dark:text-slate-300 dark:hover:text-white cursor-pointer transition-colors"
             >
               <ChevronRight className="w-4 h-4" />
             </button>

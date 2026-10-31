@@ -42,18 +42,18 @@ export default function CameraSetupPreview() {
   ];
 
   return (
-    <section className="py-16 sm:py-20 bg-linear-to-b from-slate-900 to-slate-950 text-white border-b border-slate-800 transition-colors">
+    <section className="py-16 sm:py-20 bg-gradient-to-b from-indigo-50/40 via-white to-slate-50 dark:from-slate-900 dark:to-slate-950 text-slate-900 dark:text-white border-b border-slate-200 dark:border-slate-800 transition-colors duration-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
-        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 border-b border-slate-800/80 pb-8">
+        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 border-b border-slate-200 dark:border-slate-800/80 pb-8">
           <div className="space-y-3 max-w-2xl">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/20 border border-indigo-500/30 text-indigo-300 text-xs font-semibold">
-              <Camera className="w-3.5 h-3.5 text-indigo-400" />
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/10 dark:bg-indigo-500/20 border border-indigo-500/20 dark:border-indigo-500/30 text-indigo-700 dark:text-indigo-300 text-xs font-semibold">
+              <Camera className="w-3.5 h-3.5 text-indigo-600 dark:text-indigo-400" />
               <span>{isBangla ? "আমাদের বিশেষ সেবা ও দক্ষতা" : "Specialized In-House Skill"}</span>
             </div>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-black tracking-tight text-white">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-black tracking-tight text-slate-900 dark:text-white">
               {c.title}
             </h2>
-            <p className="text-xs sm:text-sm text-slate-300 leading-relaxed font-light">
+            <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed font-light">
               {c.subtitle}
             </p>
           </div>
@@ -93,16 +93,16 @@ export default function CameraSetupPreview() {
             return (
               <div
                 key={idx}
-                className="p-5 rounded-2xl bg-slate-900/80 border border-slate-800 hover:border-indigo-500 transition-colors space-y-2.5"
+                className="p-5 rounded-2xl bg-white dark:bg-slate-900/80 border border-slate-200 dark:border-slate-800 hover:border-indigo-500 dark:hover:border-indigo-500 shadow-2xs dark:shadow-none transition-colors space-y-2.5"
               >
-                <div className="w-10 h-10 rounded-xl bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 flex items-center justify-center">
+                <div className="w-10 h-10 rounded-xl bg-indigo-500/10 border border-indigo-500/20 text-indigo-600 dark:text-indigo-400 flex items-center justify-center">
                   <Icon className="w-5 h-5" />
                 </div>
                 <div>
-                  <h4 className="font-bold text-white text-sm">
+                  <h4 className="font-bold text-slate-900 dark:text-white text-sm">
                     {item.title}
                   </h4>
-                  <p className="text-[11px] text-slate-400 mt-0.5">
+                  <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5">
                     {item.desc}
                   </p>
                 </div>
@@ -112,9 +112,9 @@ export default function CameraSetupPreview() {
         </div>
 
         {/* Quick Location Note */}
-        <div className="text-center text-xs text-slate-400 flex items-center justify-center gap-2">
+        <div className="text-center text-xs text-slate-500 dark:text-slate-400 flex items-center justify-center gap-2">
           <span>{isBangla ? "অন-সাইট সেবা ও পরামর্শের জন্য আমাদের দোকানে আসুন:" : "Visit our store for on-site consultation:"}</span>
-          <span className="font-bold text-white">
+          <span className="font-bold text-slate-800 dark:text-white">
             {isBangla ? SHOP_CONFIG.locationShortBn : SHOP_CONFIG.locationShort}
           </span>
         </div>
