@@ -75,7 +75,7 @@ export default function RootLayout({
           id="theme-initializer"
           strategy="beforeInteractive"
           dangerouslySetInnerHTML={{
-            __html: `(function(){try{var stored=localStorage.getItem('aristo_theme');var supportDark=window.matchMedia('(prefers-color-scheme: dark)').matches;var isDark=stored==='dark'||((!stored||stored==='system')&&supportDark);var root=document.documentElement;if(isDark){root.classList.add('dark');root.setAttribute('data-theme','dark');root.style.colorScheme='dark';}else{root.classList.remove('dark');root.setAttribute('data-theme','light');root.style.colorScheme='light';}}catch(e){}})();`,
+            __html: `(function(){try{var stored=localStorage.getItem('aristo_theme');var isDark=stored==='dark';var root=document.documentElement;if(isDark){root.classList.add('dark');root.setAttribute('data-theme','dark');root.style.colorScheme='dark';}else{root.classList.remove('dark');root.setAttribute('data-theme','light');root.style.colorScheme='light';}}catch(e){}})();`,
           }}
         />
         <ThemeProvider>

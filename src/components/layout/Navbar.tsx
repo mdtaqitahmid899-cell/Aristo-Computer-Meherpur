@@ -11,7 +11,6 @@ import {
   X,
   Phone,
   MessageCircle,
-  Sparkles,
   ShoppingCart,
   Heart,
   Cpu,
@@ -58,6 +57,17 @@ export default function Navbar() {
     },
     [pathname]
   );
+
+  // Prevent background scrolling when mobile menu drawer is open
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      const originalOverflow = document.body.style.overflow;
+      document.body.style.overflow = "hidden";
+      return () => {
+        document.body.style.overflow = originalOverflow;
+      };
+    }
+  }, [mobileMenuOpen]);
 
   // Focus search input when search is opened
   useEffect(() => {
@@ -291,10 +301,8 @@ export default function Navbar() {
                 <LanguageToggle />
               </div>
 
-              {/* Dark/Light Theme Toggle - on tablets/desktop */}
-              <div className="hidden sm:block">
-                <ThemeToggle showDropdown={false} />
-              </div>
+              {/* Dark/Light Theme Toggle - available on mobile and desktop */}
+              <ThemeToggle showDropdown={false} />
 
               {/* Wishlist Link - on tablets/desktop */}
               <Link
@@ -481,19 +489,20 @@ export default function Navbar() {
             )}
           </div>
         </div>
+      </header>
 
-        {/* Mobile Slide-Over Drawer */}
-        {mobileMenuOpen && (
-          <div className="lg:hidden fixed inset-0 z-50 flex">
-            {/* Backdrop */}
-            <div
-              className="fixed inset-0 bg-slate-950/70 backdrop-blur-xs transition-opacity"
-              onClick={() => setMobileMenuOpen(false)}
-              aria-hidden="true"
-            />
+      {/* Mobile Slide-Over Drawer (mounted at root level outside header containing block) */}
+      {mobileMenuOpen && (
+        <div className="lg:hidden fixed inset-0 z-50 flex">
+          {/* Backdrop */}
+          <div
+            className="fixed inset-0 bg-slate-950/70 backdrop-blur-xs transition-opacity"
+            onClick={() => setMobileMenuOpen(false)}
+            aria-hidden="true"
+          />
 
-            {/* Drawer Panel */}
-            <div className="relative ml-auto w-full max-w-xs sm:max-w-sm bg-white dark:bg-slate-900 h-full shadow-2xl flex flex-col z-10 border-l border-slate-200 dark:border-slate-800 transition-colors animate-in slide-in-from-right duration-300">
+          {/* Drawer Panel */}
+          <div className="relative ml-auto w-full max-w-xs sm:max-w-sm bg-white dark:bg-slate-900 h-dvh max-h-screen shadow-2xl flex flex-col z-10 border-l border-slate-200 dark:border-slate-800 transition-colors animate-in slide-in-from-right duration-300 overscroll-contain">
               {/* Drawer Header */}
               <div className="p-4 border-b border-slate-100 dark:border-slate-800 flex items-center justify-between">
                 <div className="flex items-center gap-2.5">
@@ -663,20 +672,6 @@ export default function Navbar() {
                   </Link>
 
                   <Link
-                    href="/products?featured=true"
-                    onClick={() => setMobileMenuOpen(false)}
-                    className="px-3 py-2 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800 flex items-center justify-between transition-colors"
-                  >
-                    <div className="flex items-center gap-2.5 text-amber-600 dark:text-amber-400 font-semibold">
-                      <Sparkles className="w-4 h-4 text-amber-500" />
-                      <span>{t.nav.offers}</span>
-                    </div>
-                    <span className="text-xs bg-amber-100 dark:bg-amber-950 text-amber-800 dark:text-amber-300 px-2 py-0.5 rounded-full font-bold">
-                      HOT
-                    </span>
-                  </Link>
-
-                  <Link
                     href="/contact"
                     onClick={() => setMobileMenuOpen(false)}
                     className={`px-3 py-2 rounded-xl transition-colors flex items-center gap-2.5 ${
@@ -732,7 +727,6 @@ export default function Navbar() {
             </div>
           </div>
         )}
-      </header>
 
       {/* Mobile Bottom Navigation App Bar (Phone Only: < md) */}
       <nav

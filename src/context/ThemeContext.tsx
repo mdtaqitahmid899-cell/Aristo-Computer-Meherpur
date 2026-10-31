@@ -26,14 +26,14 @@ function notifyThemeChange() {
 }
 
 export function getStoredTheme(): ThemeMode {
-  if (typeof window === "undefined") return "system";
+  if (typeof window === "undefined") return "light";
   try {
     const val = localStorage.getItem(THEME_STORAGE_KEY) as ThemeMode | null;
-    if (val === "light" || val === "dark" || val === "system") {
+    if (val === "light" || val === "dark") {
       return val;
     }
   } catch {}
-  return "system";
+  return "light";
 }
 
 export function getSystemTheme(): ResolvedTheme {
@@ -44,8 +44,7 @@ export function getSystemTheme(): ResolvedTheme {
 export function getResolvedTheme(): ResolvedTheme {
   const mode = getStoredTheme();
   if (mode === "dark") return "dark";
-  if (mode === "light") return "light";
-  return getSystemTheme();
+  return "light";
 }
 
 export function applyThemeToDOM(resolved: ResolvedTheme) {
@@ -112,7 +111,7 @@ function subscribeTheme(callback: () => void) {
 }
 
 const ThemeContext = createContext<ThemeContextType>({
-  theme: "system",
+  theme: "light",
   resolvedTheme: "light",
   setTheme: () => {},
   toggleTheme: () => {},
@@ -123,7 +122,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
   const theme = useSyncExternalStore(
     subscribeTheme,
     getStoredTheme,
-    () => "system" as ThemeMode
+    () => "light" as ThemeMode
   );
 
   const resolvedTheme = useSyncExternalStore(
