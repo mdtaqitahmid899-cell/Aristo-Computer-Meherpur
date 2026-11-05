@@ -44,7 +44,10 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "Aristo Computer" }],
   verification: {
-    google: "HD4FCnd5mIgNlvvQ-0EbhpKO13Y09M6YTeNcK0aOlQs",
+    google: [
+      "7dDWWEm5gpDvvg6Y47weMCO53EofaVxeb38HvaBCOUU",
+      "HD4FCnd5mIgNlvvQ-0EbhpKO13Y09M6YTeNcK0aOlQs",
+    ],
   },
   icons: {
     icon: [
